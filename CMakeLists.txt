@@ -42,7 +42,7 @@ if (PRTHGDF_AS_SUBDIR)
     target_link_libraries(${PROJECT_NAME} PRIVATE Drogon::Drogon)
     # #######################################################################################
 else()
-message(STATUS "(msg) ${PROJECT_NAME}: treated as module build")
+    message(STATUS "(msg) ${PROJECT_NAME}: treated as module build")
     # #######################################################################################
     # # use this if this project was your root project
     find_package(Drogon CONFIG REQUIRED)

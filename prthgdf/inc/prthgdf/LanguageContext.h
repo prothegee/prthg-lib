@@ -30,8 +30,8 @@ namespace prthgdf
     {
     private:
         const std::vector<std::string> m_supportedLanguages = {
-            "id",
-            "en"
+            "en",
+            "id"
         };
 
 
@@ -54,6 +54,27 @@ namespace prthgdf
          * @return std::vector<std::string> 
          */
         std::vector<std::string> SupportedLanguages();
+
+
+        /**
+         * @brief get Accept-Language header
+         * 
+         * @param pReq 
+         * @return std::string 
+         */
+        std::string HeaderAcceptLanguage(HttpRequestPtr pReq);
+
+
+        /**
+         * @brief process user language from supported languages
+         * 
+         * @param pReq 
+         * @return std::string 
+         */
+        std::string UserProcessingLanguage(HttpRequestPtr pReq);
+
+
+        void ForceDefaultLanguageRedirect(HttpResponsePtr pResp, const std::string language, std::function<void(const HttpResponsePtr &)> respCallback, const std::string redirectPath);
     };
 
 

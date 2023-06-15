@@ -1,0 +1,26 @@
+##
+## directory
+##
+.vs
+[Bb]in
+[Bb]uild
+[Dd]ist
+[Ll]og
+[Ll]ogs
+[Tt]mp
+
+
+##
+## extension
+##
+*.bak*
+*.exe*
+*.gen.*
+
+
+##
+## file
+##
+/.vscode/launch.json
+/.vscode/settings.json
+/.vscode/task.json

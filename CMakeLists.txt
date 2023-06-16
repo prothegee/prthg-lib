@@ -32,6 +32,7 @@ add_library(${PROJECT_NAME}
 
     prthgdf/src/prthgdf/HostAndUrl.cc
     prthgdf/src/prthgdf/LanguageContext.cc
+    prthgdf/src/prthgdf/ViewContext.cc
 )
 
 

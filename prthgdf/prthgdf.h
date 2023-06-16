@@ -16,12 +16,16 @@
 
 #include "prthgdf/LanguageContext.h"
 
+#include "prthgdf/ViewContext.h"
+
 
 namespace prthgdf
 {
     class prthgdf::CHostAndUrl;
 
     class prthgdf::CLanguageContext;
+
+    class prthgdf::CViewContext;
 
 
     /**
@@ -47,6 +51,7 @@ namespace prthgdf
         {
             static inline std::shared_ptr<prthgdf::CHostAndUrl> HostAndUrl = std::make_shared<prthgdf::CHostAndUrl>();
             static inline std::shared_ptr<prthgdf::CLanguageContext> LanguageContext = std::make_shared<prthgdf::CLanguageContext>();
+            static inline std::shared_ptr<prthgdf::CViewContext> ViewContext = std::make_shared<prthgdf::CViewContext>();
         };
         // tools pointer access
         static inline std::shared_ptr<STools> pTools = std::make_shared<STools>();

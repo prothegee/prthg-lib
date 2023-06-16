@@ -74,6 +74,14 @@ namespace prthgdf
         std::string UserProcessingLanguage(HttpRequestPtr pReq);
 
 
+        /**
+         * @brief redirect a page if not match with supported languages
+         * 
+         * @param pResp 
+         * @param language 
+         * @param respCallback 
+         * @param redirectPath 
+         */
         void ForceDefaultLanguageRedirect(HttpResponsePtr pResp, const std::string language, std::function<void(const HttpResponsePtr &)> respCallback, const std::string redirectPath);
     };
 

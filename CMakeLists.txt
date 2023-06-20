@@ -51,6 +51,8 @@ endif()
 # ########################################################################
 add_library(${PROJECT_NAME}
     prthgcpp/prthgcpp.cc
+
+    prthgcpp/src/drogon/HostAndUrl.cc
 )
 # ########################################################################
 
@@ -67,15 +69,28 @@ if (PRTHGLIB_AS_SUBDIR)
 
     target_link_libraries(${PROJECT_NAME} PRIVATE JsonCpp::JsonCpp)
 
-    target_link_libraries(${PROJECT_NAME}  PRIVATE cryptopp::cryptopp)
+    if (PRTHGLIB_INC_DROGON)
+        target_link_libraries(${PROJECT_NAME} PRIVATE Drogon::Drogon)
+    endif()
+
+    if (PRTHGLIB_INC_CRYPTOPP)
+        target_link_libraries(${PROJECT_NAME}  PRIVATE cryptopp::cryptopp)
+    endif()
 else()
     message(STATUS "(MSG) - ${PROJECT_NAME}: treated as project")
 
     find_package(jsoncpp CONFIG REQUIRED)
     target_link_libraries(${PROJECT_NAME} PRIVATE JsonCpp::JsonCpp)
 
-    find_package(cryptopp CONFIG REQUIRED)
-    target_link_libraries(${PROJECT_NAME}  PRIVATE cryptopp::cryptopp)
+    if (PRTHGLIB_INC_DROGON)
+        find_package(Drogon CONFIG REQUIRED)
+        target_link_libraries(${PROJECT_NAME} PRIVATE Drogon::Drogon)
+    endif()
+
+    if (PRTHGLIB_INC_CRYPTOPP)
+        find_package(cryptopp CONFIG REQUIRED)
+        target_link_libraries(${PROJECT_NAME}  PRIVATE cryptopp::cryptopp)
+    endif()
 endif()
 # ########################################################################
 

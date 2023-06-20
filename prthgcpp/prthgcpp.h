@@ -11,24 +11,36 @@
 #ifndef PRTHGCPP_H
 #define PRTHGCPP_H
 #include <memory>
+#include <drogon/drogon.h>
+
+#include "prthgcpp/inc/drogon/HostAndUrl.h"
 
 
 namespace prthgcpp
 {
+    class prthgcpp::drogon::CHostAndUrl;
+
+
 
 
     /**
      * @brief global prthgcpp structure
      * 
      */
-    struct SGlobal
+    struct SGlobal final
     {
         SGlobal();
         ~SGlobal();
 
 
-        #pragma region tool classes
-        #pragma endregion
+        struct SDrogonFramework
+        {
+            // host and url shared pointer
+            static inline std::shared_ptr<prthgcpp::drogon::CHostAndUrl> HostAndUrl = std::make_shared<prthgcpp::drogon::CHostAndUrl>();
+        };
+
+        // optional pointer to prthgcpp drogon namespace
+        static inline std::shared_ptr<SDrogonFramework> pDrogonFramework = std::make_shared<SDrogonFramework>();
 
 
         /**
@@ -37,6 +49,8 @@ namespace prthgcpp
          */
         void SayHello();
     };
+
+
 
 
     /**

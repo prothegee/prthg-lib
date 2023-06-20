@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(prthg-lib-test VERSION 0.0.0.20230620)
+project(prthg-lib-test)
 
 
 # ########################################################################

@@ -33,6 +33,11 @@ else ()
     set(CMAKE_CXX_STANDARD 17)
     message(STATUS "(MSG) - ${PROJECT_NAME}: using c++17")
 endif ()
+
+
+if (CMAKE_BUILD_TYPE STREQUAL "")
+    set(CMAKE_BUILD_TYPE "Debug")
+endif()
 # ########################################################################
 
 
@@ -71,4 +76,9 @@ target_include_directories(${PROJECT_NAME}
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}>
         $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/prthgcpp/inc>
 )
+# ########################################################################
+
+
+# ########################################################################
+add_subdirectory(prthgcpp/test)
 # ########################################################################

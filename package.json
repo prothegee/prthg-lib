@@ -18,8 +18,9 @@
     "homepage": "https://github.com/prothegee/prthg-lib#readme",
     "type": "module",
     "devDependencies": {
-        "rollup": "^3.25.1",
-        "tslib": "^2.5.3",
-        "typescript": "^5.1.3"
+        "@typescript-eslint/eslint-plugin": "^5.60.0",
+        "@typescript-eslint/parser": "^5.60.0",
+        "eslint": "^8.43.0",
+        "typescript": "5.0"
     }
 }

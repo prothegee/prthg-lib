@@ -9,6 +9,9 @@
 [Ll]ogs
 [Tt]mp
 
+/.svelte-kit
+/node_modules
+
 
 ##
 ## extension

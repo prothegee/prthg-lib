@@ -1,0 +1,25 @@
+{
+    "name": "prthg-lib",
+    "version": "0.0.0.20230620",
+    "description": "prthg-lib project source code",
+    "scripts": {
+        "_": "echo \"just a last reservation\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/prothegee/prthg-lib.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/prothegee/prthg-lib/issues"
+    },
+    "homepage": "https://github.com/prothegee/prthg-lib#readme",
+    "type": "module",
+    "devDependencies": {
+        "rollup": "^3.25.1",
+        "tslib": "^2.5.3",
+        "typescript": "^5.1.3"
+    }
+}

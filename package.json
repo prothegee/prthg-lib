@@ -10,7 +10,7 @@
         "url": "git+https://github.com/prothegee/prthg-lib.git"
     },
     "keywords": [],
-    "author": "",
+    "author": "Prana Ron @prothegee (prthg@proton.me)",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/prothegee/prthg-lib/issues"
@@ -21,6 +21,16 @@
         "@typescript-eslint/eslint-plugin": "^5.60.0",
         "@typescript-eslint/parser": "^5.60.0",
         "eslint": "^8.43.0",
+        "rollup": "^3.25.1",
         "typescript": "5.0"
-    }
+    },
+    "internal": {
+        "supported_earth_languages": [
+            "id",
+            "en"
+        ]
+    },
+    "contributors": [
+        "Prana Ron @prothegee (prthg@proton.me)"
+    ]
 }

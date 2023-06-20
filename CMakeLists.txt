@@ -1,9 +1,16 @@
 cmake_minimum_required(VERSION 3.15)
-project(prthg-lib VERSION 0.0.0.20230620)
+project(prthg-lib)
 
 
 # ########################################################################
-message(STATUS "(MSG) - configuring ${PROJECT_NAME} v${VERSION}")
+set(PRTHGLIB_MAJOR 0)
+set(PRTHGLIB_MINOR 0)
+set(PRTHGLIB_PATCH 0)
+set(PRTHGLIB_DATES 20230620)
+
+set(PRTHGLIB_VERSION "${PRTHGLIB_MAJOR}.${PRTHGLIB_MINOR}.${PRTHGLIB_PATCH}.${PRTHGLIB_DATES}")
+
+message(STATUS "(MSG) - ${PROJECT_NAME}: configuring v${PRTHGLIB_VERSION}")
 # ########################################################################
 
 

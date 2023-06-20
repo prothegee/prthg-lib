@@ -66,11 +66,16 @@ if (PRTHGLIB_AS_SUBDIR)
     ]===]
 
     target_link_libraries(${PROJECT_NAME} PRIVATE JsonCpp::JsonCpp)
+
+    target_link_libraries(${PROJECT_NAME}  PRIVATE cryptopp::cryptopp)
 else()
     message(STATUS "(MSG) - ${PROJECT_NAME}: treated as project")
 
     find_package(jsoncpp CONFIG REQUIRED)
     target_link_libraries(${PROJECT_NAME} PRIVATE JsonCpp::JsonCpp)
+
+    find_package(cryptopp CONFIG REQUIRED)
+    target_link_libraries(${PROJECT_NAME}  PRIVATE cryptopp::cryptopp)
 endif()
 # ########################################################################
 

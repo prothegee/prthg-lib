@@ -1,12 +1,12 @@
 /**
- * file EStorage.ts
- * author Prana Ron (prthg@proton.me)
+ * @file EStorage.ts
+ * @author Prana Ron (prthg@proton.me)
  * 
- * brief internal enums collection for Storage keyword/prefix
+ * @brief internal enums collection for Storage keyword/prefix
  * 
- * copyright Copyright (c) 2023
+ * @copyright Copyright (c) 2023
  * 
- * contributors:
+ * @contributors:
  * - Prana Ron @prothegee (prthg@proton.me)
  * 
 */

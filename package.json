@@ -1,0 +1,36 @@
+{
+    "name": "prthg-lib",
+    "version": "0.0.0.20230620",
+    "description": "prthg-lib project source code",
+    "scripts": {
+        "_": "echo \"just a last reservation\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/prothegee/prthg-lib.git"
+    },
+    "keywords": [],
+    "author": "Prana Ron @prothegee (prthg@proton.me)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/prothegee/prthg-lib/issues"
+    },
+    "homepage": "https://github.com/prothegee/prthg-lib#readme",
+    "type": "module",
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^5.60.0",
+        "@typescript-eslint/parser": "^5.60.0",
+        "eslint": "^8.43.0",
+        "rollup": "^3.25.1",
+        "typescript": "5.0"
+    },
+    "internal": {
+        "supported_earth_languages": [
+            "id",
+            "en"
+        ]
+    },
+    "contributors": [
+        "Prana Ron @prothegee (prthg@proton.me)"
+    ]
+}

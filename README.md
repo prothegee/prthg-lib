@@ -19,15 +19,15 @@ __*currently only used on internal projects*__
     
     - dependencies:
         - required:
-            - tbd
+            - [jsoncpp](https://github.com/open-source-parsers/jsoncpp)
 
         - optional:
-            - tbd
+            - [drogonframework](https://github.com/drogonframework/drogon)
+            - [cryptopp](https://github.com/weidai11/cryptopp)
 
     - note:
-        ```
-        tba
-        ```
+        - using c++20 by default
+        - all coroutine function will be marked with Task suffix ( e.g. __*MyCallerTask()*__ )
 
 <br>
 

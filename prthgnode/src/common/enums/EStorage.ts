@@ -12,6 +12,8 @@
 */
 /**
  * @brief project local storage enum
+ * 
+ * @note each value represent key on Local Storage
 */
 export enum EStorageLocal
 {

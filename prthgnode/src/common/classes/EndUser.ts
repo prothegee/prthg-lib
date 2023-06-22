@@ -19,7 +19,21 @@ import { EStorageLocal } from "../enums/EStorage";
 */
 export default class CEndUser
 {
-    public SetDefaultLanguage():void
+    private m_ready:boolean;
+
+
+    constructor()
+    {
+        this.m_ready = true;
+    }
+
+
+
+
+    /**
+     * @brief set default language localStorage to en
+    */
+    public SetDefaultLanguageLocaStorage():void
     {
         let isSupported = false;
         let defaultLang = "";
@@ -69,6 +83,8 @@ export default class CEndUser
 
         return result;
     }
+
+
 
 
     /**

@@ -13,11 +13,15 @@
 #include <memory>
 #include <drogon/drogon.h>
 
+#include "prthgcpp/inc/Cryptography.h"
+
 #include "prthgcpp/inc/drogon/HostAndUrl.h"
 
 
 namespace prthgcpp
 {
+    class prthgcpp::CCryptography;
+
     class prthgcpp::drogon::CHostAndUrl;
 
 
@@ -31,6 +35,10 @@ namespace prthgcpp
     {
         SGlobal();
         ~SGlobal();
+
+
+        // cryptography shared pointer
+        static inline std::shared_ptr<prthgcpp::CCryptography> pCryptography = std::make_shared<prthgcpp::CCryptography>();
 
 
         struct SDrogonFramework

@@ -52,6 +52,8 @@ endif()
 add_library(${PROJECT_NAME}
     prthgcpp/prthgcpp.cc
 
+    prthgcpp/src/Cryptography.cc
+
     prthgcpp/src/drogon/HostAndUrl.cc
 )
 # ########################################################################

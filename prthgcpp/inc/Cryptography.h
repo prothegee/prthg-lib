@@ -82,6 +82,35 @@ namespace prthgcpp
          * @return std::string 
          */
         std::string GenerateSHA(std::string input, const prthgcpp::ECCryptShaLength shaLength) const;
+
+
+        /**
+         * @brief generate password hasher
+         * 
+         * @note you may store your salt somewhere
+         * 
+         * @param input 
+         * @param passwordHasher 
+         * @param salt 
+         * @return std::string 
+         */
+        std::string GeneratePasswordHasher(std::string input, const prthgcpp::ECCryptPasswordHasher passwordHasher, std::string salt) const;
+
+
+        /**
+         * @brief stream cipher mode to encrypt decrypt a message/input
+         * 
+         * @note both initializeKey & initializeVector must 9 byte length and cannot start with 0
+         * @note e.g. 123456789 or 987654321
+         * 
+         * @param cipherMode 
+         * @param streamCipherMode 
+         * @param input 
+         * @param initializeKey 
+         * @param initializeVector 
+         * @return std::string 
+         */
+        std::string StreamCipher(const prthgcpp::ECCryptCipherMode cipherMode, const prthgcpp::ECCryptStreamCipherMode streamCipherMode, std::string input, int initializeKey, int initializeVector) const;
     };
 
 

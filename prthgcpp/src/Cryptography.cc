@@ -9,6 +9,7 @@
 #include <cryptopp/secblock.h>
 #include <cryptopp/filters.h>
 #include <cryptopp/hex.h>
+#include <cryptopp/words.h>
 
 #include <cryptopp/blake2.h>
 #include <cryptopp/scrypt.h>
@@ -183,6 +184,107 @@ std::string prthgcpp::CCryptography::GenerateSHA(std::string input, const prthgc
             encoder.Attach(new CryptoPP::StringSink(result));
             encoder.Put(digest, sizeof(digest));
             encoder.MessageEnd();
+        }
+        break;
+    }
+
+
+    return result;
+}
+
+
+
+
+std::string prthgcpp::CCryptography::GeneratePasswordHasher(std::string input, const prthgcpp::ECCryptPasswordHasher passwordHasher, std::string salt) const
+{
+    std::string result;
+
+
+    switch (passwordHasher)
+    {
+        case ECCryptPasswordHasher::SCRYPT:
+        {
+            int icost = 1024; // default = 1024; optimal 2048;
+            int iblockSize = 8; // default = 8; optimal 16;
+            int iparallelization = 16; // default = 16; optimal 64;
+            int isize = 256; // 128 -> 256; 256 -> 512; optimal 256;
+            int iderived = 128;
+
+            std::string passwd_input(input), salt_input(salt);
+
+            CryptoPP::word64 cost, blockSize, parallelization;
+            cost = static_cast<CryptoPP::word64>(icost);
+            blockSize = static_cast<CryptoPP::word64>(iblockSize);
+            parallelization = static_cast<CryptoPP::word64>(iparallelization);
+
+            CryptoPP::Scrypt scrypt;
+            CryptoPP::SecByteBlock derived(iderived);
+
+            CryptoPP::AlgorithmParameters params = 
+                CryptoPP::MakeParameters("Cost", cost)
+                ("BlockSize", blockSize)("Parallelization", parallelization)
+                ("Salt", CryptoPP::ConstByteArrayParameter(
+                    (const CryptoPP::byte*)&salt_input[0], salt_input.size()));
+
+            scrypt.DeriveKey(derived, derived.size(),
+                (const CryptoPP::byte*)&passwd_input[0], passwd_input.size(), params);
+
+            CryptoPP::StringSource(derived, isize, true,
+                new CryptoPP::HexEncoder(new CryptoPP::StringSink(result)));
+        }
+        break;
+    }
+
+
+    return result;
+}
+
+
+
+
+std::string prthgcpp::CCryptography::StreamCipher(const prthgcpp::ECCryptCipherMode cipherMode, const prthgcpp::ECCryptStreamCipherMode streamCipherMode, std::string input, int initializeKey, int initializeVector) const
+{
+    std::string result;
+
+
+    switch (cipherMode)
+    {
+        case ECCryptCipherMode::encrypt:
+        {
+            if (streamCipherMode == ECCryptStreamCipherMode::CBC_AES)
+            {
+                CryptoPP::byte key[CryptoPP::AES::DEFAULT_KEYLENGTH], iv[CryptoPP::AES::BLOCKSIZE];
+                memset(key, initializeKey, CryptoPP::AES::DEFAULT_KEYLENGTH);
+                memset(iv, initializeVector, CryptoPP::AES::BLOCKSIZE);
+
+                CryptoPP::AES::Encryption aesEncryption(key, CryptoPP::AES::DEFAULT_KEYLENGTH);
+                CryptoPP::CBC_Mode_ExternalCipher::Encryption cbcEncryption(aesEncryption, iv);
+
+                CryptoPP::StreamTransformationFilter encrypt(cbcEncryption, new CryptoPP::StringSink(result));
+                encrypt.Put(reinterpret_cast<const unsigned char*>(input.c_str()), input.length());
+                encrypt.MessageEnd();
+            }
+        }
+        break;
+
+
+
+
+        case ECCryptCipherMode::decrypt:
+        {
+            if (streamCipherMode == ECCryptStreamCipherMode::CBC_AES)
+            {
+                CryptoPP::byte key[CryptoPP::AES::DEFAULT_KEYLENGTH], iv[CryptoPP::AES::BLOCKSIZE];
+                memset(key, initializeKey, CryptoPP::AES::DEFAULT_KEYLENGTH);
+                memset(iv, initializeVector, CryptoPP::AES::BLOCKSIZE);
+
+                CryptoPP::AES::Decryption aesDecryption(key, CryptoPP::AES::DEFAULT_KEYLENGTH);
+                CryptoPP::CBC_Mode_ExternalCipher::Decryption cbcDecryption(aesDecryption, iv);
+
+                CryptoPP::StreamTransformationFilter decrypt(cbcDecryption, new CryptoPP::StringSink(result));
+                decrypt.Put(reinterpret_cast<const unsigned char*>( input.c_str() ), input.size());
+                decrypt.MessageEnd();
+            }
         }
         break;
     }

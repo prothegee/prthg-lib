@@ -30,6 +30,31 @@ namespace prthgcpp
     };
 
 
+    // enum class of crypt password hasher
+    enum class ECCryptPasswordHasher : int
+    {
+        undefined = 0,
+        SCRYPT,
+    };
+
+
+    // enum class of crypt cipher mode
+    enum class ECCryptCipherMode : int
+    {
+        undefined = 0,
+        encrypt,
+        decrypt,
+    };
+
+
+    // enum class of crypt stream cipher mode
+    enum class ECCryptStreamCipherMode : int
+    {
+        undefined = 0,
+        CBC_AES,
+    };
+
+
 } // namespace prthgcpp
 
 

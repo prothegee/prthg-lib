@@ -48,3 +48,59 @@ Task<bool> prthgcpp::drogon::CHostAndUrl::CheckOriginToAllowAccessTask(HttpReque
 
     co_return result;
 }
+
+
+
+
+
+
+
+
+void prthgcpp::drogon::CHostAndUrl::EvaluateHostIsAllowed(HttpRequestPtr pReq, Json::Value allowedHost, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback)
+{
+    bool result{};
+
+    for (auto host : allowedHost)
+    {
+        if (host.asString().rfind(pReq->getHeader("host"), 0) == 0)
+        {
+            result = true;
+            break;
+        }
+    }
+
+    if (!result)
+    {
+        pResp = HttpResponse::newHttpResponse();
+        pResp->setStatusCode(k406NotAcceptable);
+
+        callback(pResp);
+    }
+}
+
+
+
+
+Task<void> prthgcpp::drogon::CHostAndUrl::EvaluateHostIsAllowedTask(HttpRequestPtr pReq, Json::Value allowedHost, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback)
+{
+    bool result{};
+
+    for (auto host : allowedHost)
+    {
+        if (host.asString().rfind(pReq->getHeader("host"), 0) == 0)
+        {
+            result = true;
+            break;
+        }
+    }
+
+    if (!result)
+    {
+        pResp = HttpResponse::newHttpResponse();
+        pResp->setStatusCode(k406NotAcceptable);
+
+        callback(pResp);
+    }
+
+    co_return; // seems not right?
+}

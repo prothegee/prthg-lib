@@ -59,6 +59,30 @@ namespace prthgcpp::drogon
          * @return Task<bool> 
          */
         Task<bool> CheckOriginToAllowAccessTask(HttpRequestPtr pReq, Json::Value whitelistDomain);
+
+
+        /**
+         * @brief check current request host header is in allowedHost, otherwise it's not acceptable
+         * 
+         * @param pReq 
+         * @param allowedHost 
+         * @param pResp 
+         * @param callback 
+         */
+        void EvaluateHostIsAllowed(HttpRequestPtr pReq, Json::Value allowedHost, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback);
+
+        /**
+         * @brief check current request host header is in allowedHost, otherwise it's not acceptable
+         * 
+         * @note coroutine
+         * 
+         * @param pReq 
+         * @param allowedHost 
+         * @param pResp 
+         * @param callback 
+         * @return Task<void> 
+         */
+        Task<void> EvaluateHostIsAllowedTask(HttpRequestPtr pReq, Json::Value allowedHost, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback);
     };
 
 

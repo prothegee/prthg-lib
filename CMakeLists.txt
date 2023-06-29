@@ -69,8 +69,6 @@ if (PRTHGLIB_AS_SUBDIR)
     you need to set find_package(foo CONFIG REQUIRED) at your root project 
     ]===]
 
-    target_link_libraries(${PROJECT_NAME} PRIVATE JsonCpp::JsonCpp)
-
     if (PRTHGLIB_INC_DROGON)
         target_link_libraries(${PROJECT_NAME} PRIVATE Drogon::Drogon)
     endif()
@@ -80,9 +78,6 @@ if (PRTHGLIB_AS_SUBDIR)
     endif()
 else()
     message(STATUS "(MSG) - ${PROJECT_NAME}: treated as project")
-
-    find_package(jsoncpp CONFIG REQUIRED)
-    target_link_libraries(${PROJECT_NAME} PRIVATE JsonCpp::JsonCpp)
 
     if (PRTHGLIB_INC_DROGON)
         find_package(Drogon CONFIG REQUIRED)

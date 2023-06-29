@@ -76,7 +76,7 @@ int main()
     if (L40.length() != 40)
     {
         errorCount += 1;
-        std::cout << "L40 length is not 40\n";
+        std::cout << "(ERR) - L40 length is not 40\n";
     }
 
     std::string L56 = crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L56);
@@ -84,7 +84,7 @@ int main()
     if (L56.length() != 56)
     {
         errorCount += 1;
-        std::cout << "L56 length is not 56\n";
+        std::cout << "(ERR) - L56 length is not 56\n";
     }
 
     std::string L64 = crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L64);
@@ -92,7 +92,7 @@ int main()
     if (L64.length() != 64)
     {
         errorCount += 1;
-        std::cout << "L64 length is not 64\n";
+        std::cout << "(ERR) - L64 length is not 64\n";
     }
 
     std::string L96 = crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L96);
@@ -100,7 +100,7 @@ int main()
     if (L96.length() != 96)
     {
         errorCount += 1;
-        std::cout << "L96 length is not 96\n";
+        std::cout << "(ERR) - L96 length is not 96\n";
     }
 
     std::string L128 = crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L128);
@@ -108,7 +108,34 @@ int main()
     if (L128.length() != 128)
     {
         errorCount += 1;
-        std::cout << "L128 length is not 128\n";
+        std::cout << "(ERR) - L128 length is not 128\n";
+    }
+
+
+    std::cout << "\n(MSG) - checking password hasher SCRYPT" << "\n";
+    std::string password = "mypassword123", salt = "supersalt123", passwordHash, passwordCheck;
+    passwordHash = crypt.GeneratePasswordHasher(password, prthgcpp::ECCryptPasswordHasher::SCRYPT, salt);
+    passwordCheck = crypt.GeneratePasswordHasher(password, prthgcpp::ECCryptPasswordHasher::SCRYPT, salt);
+    std::cout << "passwordHash:\n" << passwordHash << "\n\n";
+    if (passwordHash != passwordCheck)
+    {
+        errorCount += 1;
+        std::cout << "(ERR) - password is not match\n";
+    }
+
+
+    std::cout << "\n(MSG) - encrypt decrypt stream cipher" << "\n";
+    std::string message = "secret message", messageEnc, messageDec;
+    int ik = 123456789, iv = 987654321;
+    messageEnc = crypt.StreamCipher(prthgcpp::ECCryptCipherMode::encrypt, prthgcpp::ECCryptStreamCipherMode::CBC_AES, message, ik, iv);
+    messageDec = crypt.StreamCipher(prthgcpp::ECCryptCipherMode::decrypt, prthgcpp::ECCryptStreamCipherMode::CBC_AES, messageEnc, ik, iv);
+    std::cout << "message: " << message << "\n";
+    std::cout << "encrypt: " << messageEnc << "\n";
+    std::cout << "decrypt: " << messageDec << "\n";
+    if (messageDec != message)
+    {
+        errorCount += 1;
+        std::cout << "(ERR) - decrypt fail\n";
     }
 #pragma endregion
 

@@ -19,7 +19,7 @@ __*currently only used on internal projects*__
     
     - dependencies:
         - required:
-            - [jsoncpp](https://github.com/open-source-parsers/jsoncpp)
+            - N/A
 
         - optional:
             - [drogonframework](https://github.com/drogonframework/drogon)

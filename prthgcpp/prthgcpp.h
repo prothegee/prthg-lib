@@ -20,9 +20,6 @@
 
 namespace prthgcpp
 {
-    class prthgcpp::CCryptography;
-
-    class prthgcpp::drogon::CHostAndUrl;
 
 
 

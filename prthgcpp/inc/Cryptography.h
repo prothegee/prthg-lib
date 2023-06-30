@@ -41,40 +41,6 @@ namespace prthgcpp
 
 
         /**
-         * @brief check if input is alphanumeric
-         * 
-         * @note this generator quality is average
-         * @note you need add srand(time(0)) before call this function
-         * 
-         * @param input 
-         * @return true 
-         * @return false 
-         */
-        bool InputIsAlphanumeric(const std::string input) const;
-
-
-        /**
-         * @brief generate alphanumeric based on length param
-         * 
-         * @note length less than 4 will be set to 4
-         * 
-         * @param length 
-         * @return std::string 
-         */
-        std::string GenerateAlphanumeric(int length) const;
-
-
-        /**
-         * @brief force input as letterCase param format
-         * 
-         * @param input 
-         * @param letterCase 
-         * @return std::string 
-         */
-        std::string ForceInputToCaseOf(std::string input, const prthgcpp::ECLetterCase letterCase) const;
-
-
-        /**
          * @brief generate sha digest from input & based on length 2nd param input
          * 
          * @param input 

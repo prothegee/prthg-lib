@@ -19,12 +19,12 @@ int main()
 
     std::cout << "\n(MSG) - checking alphanum" << "\n";
 
-    if (prthgcpp::gsPtr->pCryptography->InputIsAlphanumeric(falseAlphanumInput))
+    if (prthgcpp::gsPtr->pUtility->InputIsAlphanumeric(falseAlphanumInput))
     {
         errorCount += 1;
         std::cout << "(ERR) - falseAlphanumInput should not alphanumeric\n";
     }
-    if (!prthgcpp::gsPtr->pCryptography->InputIsAlphanumeric(trueAlphanumInput))
+    if (!prthgcpp::gsPtr->pUtility->InputIsAlphanumeric(trueAlphanumInput))
     {
         errorCount += 1;
         std::cout << "(ERR) - trueAlphanumInput should alphanumeric\n";
@@ -35,9 +35,9 @@ int main()
 
     std::string alphanum1, alphanum2, alphanum3;
     srand(time(0));
-    alphanum1 = crypt.GenerateAlphanumeric(8);
-    alphanum2 = crypt.GenerateAlphanumeric(8);
-    alphanum3 = crypt.GenerateAlphanumeric(8);
+    alphanum1 = prthgcpp::gsPtr->pUtility->GenerateAlphanumeric(8);
+    alphanum2 = prthgcpp::gsPtr->pUtility->GenerateAlphanumeric(8);
+    alphanum3 = prthgcpp::gsPtr->pUtility->GenerateAlphanumeric(8);
 
     std::cout << "alphanum1: " << alphanum1 << "\n";
     std::cout << "alphanum2: " << alphanum2 << "\n";
@@ -64,8 +64,8 @@ int main()
     std::string inputlowercase = "ajwdho326traiwbdoa8y3gr";
     std::string inputuppercase = "AIWLT2387TRAWHDP97Q3TRS";
 
-    std::cout << inputlowercase << " to " << crypt.ForceInputToCaseOf(inputlowercase, prthgcpp::ECLetterCase::uppercase) << "\n";
-    std::cout << inputuppercase << " to " << crypt.ForceInputToCaseOf(inputuppercase, prthgcpp::ECLetterCase::lowercase) << "\n";
+    std::cout << inputlowercase << " to " << prthgcpp::gsPtr->pUtility->ForceInputToCaseOf(inputlowercase, prthgcpp::ECLetterCase::uppercase) << "\n";
+    std::cout << inputuppercase << " to " << prthgcpp::gsPtr->pUtility->ForceInputToCaseOf(inputuppercase, prthgcpp::ECLetterCase::lowercase) << "\n";
 
 
     std::cout << "\n(MSG) - generate sha from unique@mail.com" << "\n";

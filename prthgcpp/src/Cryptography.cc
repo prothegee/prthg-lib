@@ -131,32 +131,23 @@ std::string prthgcpp::CCryptography::GeneratePasswordHasher(std::string input, c
     {
         case ECCryptPasswordHasher::SCRYPT:
         {
-            int icost = 1024; // default = 1024; optimal 2048;
-            int iblockSize = 8; // default = 8; optimal 16;
-            int iparallelization = 16; // default = 16; optimal 64;
-            int isize = 256; // 128 -> 256; 256 -> 512; optimal 256;
-            int iderived = 128;
-
             std::string passwd_input(input), salt_input(salt);
 
-            CryptoPP::word64 cost, blockSize, parallelization;
-            cost = static_cast<CryptoPP::word64>(icost);
-            blockSize = static_cast<CryptoPP::word64>(iblockSize);
-            parallelization = static_cast<CryptoPP::word64>(iparallelization);
+            CryptoPP::word64 cost=1024, block=8, parallelization=16;
 
+            CryptoPP::SecByteBlock derived(256);
             CryptoPP::Scrypt scrypt;
-            CryptoPP::SecByteBlock derived(iderived);
 
             CryptoPP::AlgorithmParameters params = 
                 CryptoPP::MakeParameters("Cost", cost)
-                ("BlockSize", blockSize)("Parallelization", parallelization)
+                ("BlockSize", block)("Parallelization", parallelization)
                 ("Salt", CryptoPP::ConstByteArrayParameter(
                     (const CryptoPP::byte*)&salt_input[0], salt_input.size()));
 
             scrypt.DeriveKey(derived, derived.size(),
                 (const CryptoPP::byte*)&passwd_input[0], passwd_input.size(), params);
 
-            CryptoPP::StringSource(derived, isize, true,
+            CryptoPP::StringSource(derived, derived.size(), true,
                 new CryptoPP::HexEncoder(new CryptoPP::StringSink(result)));
         }
         break;

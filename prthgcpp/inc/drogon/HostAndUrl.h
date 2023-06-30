@@ -69,7 +69,7 @@ namespace prthgcpp::drogon
          * @param pResp 
          * @param callback 
          */
-        void EvaluateHostIsAllowed(HttpRequestPtr pReq, Json::Value allowedHost, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback);
+        void EvaluateHostIsAllowed(HttpRequestPtr pReq, const std::string allowedHost, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback);
 
         /**
          * @brief check current request host header is in allowedHost, otherwise it's not acceptable
@@ -82,7 +82,7 @@ namespace prthgcpp::drogon
          * @param callback 
          * @return Task<void> 
          */
-        Task<void> EvaluateHostIsAllowedTask(HttpRequestPtr pReq, Json::Value allowedHost, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback);
+        Task<void> EvaluateHostIsAllowedTask(HttpRequestPtr pReq, const std::string allowedHost, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback);
     };
 
 

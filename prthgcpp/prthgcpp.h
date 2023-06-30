@@ -10,10 +10,19 @@
 */
 #ifndef PRTHGCPP_H
 #define PRTHGCPP_H
+#if _WIN32
+    #ifndef NOMINMAX
+    #define NOMINMAX
+    #endif // NOMINMAX
+
+    #undef min
+    #undef max
+#endif // _WIN32
 #include <memory>
 #include <drogon/drogon.h>
 
 #include "prthgcpp/inc/Cryptography.h"
+#include "prthgcpp/inc/Utility.h"
 
 #include "prthgcpp/inc/drogon/HostAndUrl.h"
 
@@ -36,6 +45,9 @@ namespace prthgcpp
 
         // cryptography shared pointer
         static inline std::shared_ptr<prthgcpp::CCryptography> pCryptography = std::make_shared<prthgcpp::CCryptography>();
+
+        // utility shared pointer
+        static inline std::shared_ptr<prthgcpp::CUtility> pUtility = std::make_shared<prthgcpp::CUtility>();
 
 
         struct SDrogonFramework

@@ -56,17 +56,14 @@ Task<bool> prthgcpp::drogon::CHostAndUrl::CheckOriginToAllowAccessTask(HttpReque
 
 
 
-void prthgcpp::drogon::CHostAndUrl::EvaluateHostIsAllowed(HttpRequestPtr pReq, Json::Value allowedHost, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback)
+void prthgcpp::drogon::CHostAndUrl::EvaluateHostIsAllowed(HttpRequestPtr pReq, const std::string allowedHost, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback)
 {
     bool result{};
 
-    for (auto host : allowedHost)
+
+    if (allowedHost.rfind(pReq->getHeader("host"), 0) == 0)
     {
-        if (host.asString().rfind(pReq->getHeader("host"), 0) == 0)
-        {
-            result = true;
-            break;
-        }
+        result = true;
     }
 
     if (!result)
@@ -81,17 +78,14 @@ void prthgcpp::drogon::CHostAndUrl::EvaluateHostIsAllowed(HttpRequestPtr pReq, J
 
 
 
-Task<void> prthgcpp::drogon::CHostAndUrl::EvaluateHostIsAllowedTask(HttpRequestPtr pReq, Json::Value allowedHost, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback)
+Task<void> prthgcpp::drogon::CHostAndUrl::EvaluateHostIsAllowedTask(HttpRequestPtr pReq, const std::string allowedHost, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback)
 {
     bool result{};
 
-    for (auto host : allowedHost)
+
+    if (allowedHost.rfind(pReq->getHeader("host"), 0) == 0)
     {
-        if (host.asString().rfind(pReq->getHeader("host"), 0) == 0)
-        {
-            result = true;
-            break;
-        }
+        result = true;
     }
 
     if (!result)

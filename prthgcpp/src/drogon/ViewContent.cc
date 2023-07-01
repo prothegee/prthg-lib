@@ -65,7 +65,7 @@ void prthgcpp::drogon::CViewContent::InvokeBundleJS(const std::string &bundleJs)
     bundle += "'></script>";
 
 
-    _view.insert("bundle_css", bundle);
+    _view.insert("bundle_js", bundle);
 }
 
 

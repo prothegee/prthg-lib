@@ -28,6 +28,8 @@ export default class CEndUser
 
     readonly m_dateTime:string;
 
+    readonly m_browserOS:string;
+
     /**
      * @brief year
     */
@@ -60,6 +62,34 @@ export default class CEndUser
         const cTime = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
         const dateTime = cDate + ' ' + cTime + ` ( ${this.m_tz} )`;
         this.m_dateTime = dateTime;
+
+        let browserOS:string;
+        const userAgent:string = this.m_userAgent;
+        if (userAgent.indexOf("Android") > -1)
+        {
+            browserOS = "Android";
+        }
+        else if (userAgent.indexOf("iPhone") > -1)
+        {
+            browserOS = "iPhone";
+        }
+        else if (userAgent.indexOf("Linux") > -1)
+        {
+            browserOS = "Linux";
+        }
+        else if (userAgent.indexOf("Macintosh") > -1)
+        {
+            browserOS = "MacOS";
+        }
+        else if (userAgent.indexOf("Windows") > -1)
+        {
+            browserOS = "Windows";
+        }
+        else
+        {
+            browserOS = "undefined";
+        }
+        this.m_browserOS = browserOS;
 
         this.m_YYYY = new Date().getFullYear();
         this.m_MM = new Date().getMonth() + 1;

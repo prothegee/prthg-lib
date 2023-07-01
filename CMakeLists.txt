@@ -56,6 +56,7 @@ add_library(${PROJECT_NAME}
     prthgcpp/src/Utility.cc
 
     prthgcpp/src/drogon/HostAndUrl.cc
+    prthgcpp/src/drogon/ViewContent.cc
 )
 # ########################################################################
 

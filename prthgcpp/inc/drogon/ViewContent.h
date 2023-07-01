@@ -29,7 +29,7 @@ namespace prthgcpp::drogon
     class CViewContent
     {
     private:
-        /* data */
+        std::string m_currentLanguage;
 
 
     public:
@@ -51,16 +51,28 @@ namespace prthgcpp::drogon
         /**
          * @brief invoke css bulde to HttpViewData
          * 
-         * @param bundleCss 
+         * @param bundleCss example: "/dist/bundle-www-home.css"
          */
         void InvokeBundleCSS(const std::string &bundleCss);
 
         /**
          * @brief invoke js bulde to HttpViewData
          * 
+         * @param bundleCss example: "/dist/bundle-www-home.js"
+         * 
          * @param bundleJs 
          */
         void InvokeBundleJS(const std::string &bundleJs);
+
+
+        /**
+         * @brief get current user language view data
+         * 
+         * @note call this after InvokePublicView
+         * 
+         * @return std::string 
+         */
+        std::string CurrentLanguage() const;
     };
 
 

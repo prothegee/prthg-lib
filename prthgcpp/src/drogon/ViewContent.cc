@@ -18,26 +18,7 @@ prthgcpp::drogon::CViewContent::~CViewContent()
 
 void prthgcpp::drogon::CViewContent::InvokePublicView(HttpRequestPtr &pReq)
 {
-    bool languageError{true};
-    std::string language;
-    const std::string acceptLanguage = pReq->getHeader("Accept-Language");
-    const Json::Value supportedLanguage = app().getCustomConfig()["supported_languages"];
-
-    for (auto& lang : supportedLanguage)
-    {
-        if (acceptLanguage.rfind(lang.asString(), 0) == 0)
-        {
-            language = lang.asString();
-            languageError = false;
-            break;
-        }
-    }
-    
-    if (languageError) { language = "en"; }
-    m_currentLanguage = language;
-    
-    
-    _view.insert("language", language);
+    // reserved
 }
 
 
@@ -71,11 +52,7 @@ void prthgcpp::drogon::CViewContent::InvokeBundleJS(const std::string &bundleJs)
 
 
 
-
-
-
-
-std::string prthgcpp::drogon::CViewContent::CurrentLanguage() const
+void prthgcpp::drogon::CViewContent::InvokeLanguage(const std::string &language)
 {
-    return m_currentLanguage;
+    _view.insert("language", language);
 }

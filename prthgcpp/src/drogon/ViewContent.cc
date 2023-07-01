@@ -34,6 +34,7 @@ void prthgcpp::drogon::CViewContent::InvokePublicView(HttpRequestPtr &pReq)
     }
     
     if (languageError) { language = "en"; }
+    m_currentLanguage = language;
     
     
     _view.insert("language", language);
@@ -65,4 +66,16 @@ void prthgcpp::drogon::CViewContent::InvokeBundleJS(const std::string &bundleJs)
 
 
     _view.insert("bundle_css", bundle);
+}
+
+
+
+
+
+
+
+
+std::string prthgcpp::drogon::CViewContent::CurrentLanguage() const
+{
+    return m_currentLanguage;
 }

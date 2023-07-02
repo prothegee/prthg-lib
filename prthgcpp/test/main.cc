@@ -71,7 +71,7 @@ int main()
     std::cout << "\n(MSG) - generate sha from unique@mail.com" << "\n";
     std::string inputSha = "unique@mail.com";
 
-    std::string L40 = crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L40);
+    std::string L40 = crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L40, false);
     std::cout << L40 << "\n";
     if (L40.length() != 40)
     {
@@ -79,7 +79,7 @@ int main()
         std::cout << "(ERR) - L40 length is not 40\n";
     }
 
-    std::string L56 = crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L56);
+    std::string L56 = crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L56, false);
     std::cout << L56 << "\n";
     if (L56.length() != 56)
     {
@@ -87,7 +87,7 @@ int main()
         std::cout << "(ERR) - L56 length is not 56\n";
     }
 
-    std::string L64 = crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L64);
+    std::string L64 = crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L64, false);
     std::cout << L64 << "\n";
     if (L64.length() != 64)
     {
@@ -95,7 +95,7 @@ int main()
         std::cout << "(ERR) - L64 length is not 64\n";
     }
 
-    std::string L96 = crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L96);
+    std::string L96 = crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L96, false);
     std::cout << L96 << "\n";
     if (L96.length() != 96)
     {
@@ -103,7 +103,7 @@ int main()
         std::cout << "(ERR) - L96 length is not 96\n";
     }
 
-    std::string L128 = crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L128);
+    std::string L128 = crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L128, false);
     std::cout << L128 << "\n";
     if (L128.length() != 128)
     {
@@ -125,18 +125,39 @@ int main()
     }
 
 
-    std::cout << "\n(MSG) - encrypt decrypt stream cipher" << "\n";
-    std::string message = "secret message", messageEnc, messageDec;
     int ik = 123456789, iv = 987654321;
-    messageEnc = crypt.StreamCipher(prthgcpp::ECCryptCipherMode::encrypt, prthgcpp::ECCryptStreamCipherMode::CBC_AES, message, ik, iv);
-    messageDec = crypt.StreamCipher(prthgcpp::ECCryptCipherMode::decrypt, prthgcpp::ECCryptStreamCipherMode::CBC_AES, messageEnc, ik, iv);
-    std::cout << "message: " << message << "\n";
-    std::cout << "encrypt: " << messageEnc << "\n";
-    std::cout << "decrypt: " << messageDec << "\n";
-    if (messageDec != message)
+    std::string iks = "abcdefghijklmnopqrstuvwxyz123456", ivs = "abcdefghijklmnopqrstuvwx";
+
+    std::cout << "\n(MSG) - encrypt decrypt stream cipher CBC_AES" << "\n";
+    
+    std::string message1 = "secret message 1", messageEnc1, messageDec1;
     {
-        errorCount += 1;
-        std::cout << "(ERR) - decrypt fail\n";
+        messageEnc1 = crypt.StreamCipher(prthgcpp::ECCryptCipherMode::encrypt, prthgcpp::ECCryptStreamCipherMode::CBC_AES, message1, ik, iv, iks, ivs);
+        messageDec1 = crypt.StreamCipher(prthgcpp::ECCryptCipherMode::decrypt, prthgcpp::ECCryptStreamCipherMode::CBC_AES, messageEnc1, ik, iv, iks, ivs);
+        std::cout << message1 << "\n";
+        std::cout << messageEnc1 << "\n";
+        std::cout << messageDec1 << "\n";
+        if (messageDec1 != message1)
+        {
+            errorCount += 1;
+            std::cout << "(ERR) - decrypt fail CBC_AES\n";
+        }
+    }
+
+
+    std::cout << "\n(MSG) - encrypt decrypt stream cipher XChaCha20" << "\n";
+    std::string message2 = "secret message 2", messageEnc2, messageDec2;
+    {
+        messageEnc2 = crypt.StreamCipher(prthgcpp::ECCryptCipherMode::encrypt, prthgcpp::ECCryptStreamCipherMode::XChaCha20, message2, ik, iv, iks, ivs);
+        messageDec2 = crypt.StreamCipher(prthgcpp::ECCryptCipherMode::decrypt, prthgcpp::ECCryptStreamCipherMode::XChaCha20, messageEnc2, ik, iv, iks, ivs);
+        std::cout << message2 << "\n";
+        std::cout << messageEnc2 << "\n";
+        std::cout << messageDec2 << "\n";
+        if (messageDec2 != message2)
+        {
+            errorCount += 1;
+            std::cout << "(ERR) - decrypt fail XChaCha20\n";
+        }
     }
 #pragma endregion
 

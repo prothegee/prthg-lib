@@ -86,29 +86,25 @@ namespace prthgcpp::drogon
 
 
         /**
-         * @brief TMP
-         * 
-         * @tparam T 
+         * @brief check origin header is allowed from whitelist json custom_config 'foo: [...]'
+         *  
          * @param pReq 
          * @param whitelist 
          * @return true 
          * @return false 
          */
-        template <typename T>
-        bool EvaluateOriginIsAllowed(HttpRequestPtr pReq, T whitelist) const;
+        bool EvaluateOriginIsAllowed(HttpRequestPtr pReq, Json::Value whitelist) const;
 
         /**
-         * @brief TMP
+         * @brief check origin header is allowed from whitelist json custom_config 'foo: [...]'
          * 
          * @note coroutine
          * 
-         * @tparam T 
          * @param pReq 
          * @param whitelist 
          * @return Task<bool> 
          */
-        template <typename T>
-        Task<bool> EvaluateOriginIsAllowedTask(HttpRequestPtr pReq, T whitelist) const;
+        Task<bool> EvaluateOriginIsAllowedTask(HttpRequestPtr pReq, Json::Value whitelist) const;
     };
 
 

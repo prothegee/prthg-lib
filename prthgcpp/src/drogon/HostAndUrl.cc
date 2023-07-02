@@ -1,5 +1,7 @@
 #include "prthgcpp/inc/drogon/HostAndUrl.h"
 
+#include <type_traits>
+
 
 prthgcpp::drogon::CHostAndUrl::CHostAndUrl()
 {
@@ -97,4 +99,82 @@ Task<void> prthgcpp::drogon::CHostAndUrl::EvaluateHostIsAllowedTask(HttpRequestP
     }
 
     co_return; // seems not right?
+}
+
+
+
+
+
+
+
+
+template <typename T>
+bool prthgcpp::drogon::CHostAndUrl::EvaluateOriginIsAllowed(HttpRequestPtr pReq, T whitelist) const
+{
+    bool result{};
+
+
+    if (std::is_same<T, Json::Value>::value)
+    {
+        for (auto host : whitelist)
+        {
+            if (host.asString().rfind(pReq->getHeader("origin"), 0) == 0)
+            {
+                result = true;
+                break;
+            }
+        }
+    }
+
+    if (std::is_same<T, std::vector>::value)
+    {
+        for (const auto &host : whitelist)
+        {
+            if (host.rfind(pReq->getHeader("origin"), 0) == 0)
+            {
+                result = true;
+                break;
+            }
+        }
+    }
+
+
+    return result;
+}
+
+
+
+
+template <typename T>
+Task<bool> prthgcpp::drogon::CHostAndUrl::EvaluateOriginIsAllowedTask(HttpRequestPtr pReq, T whitelist) const
+{
+    bool result{};
+
+
+    if (std::is_same<T, Json::Value>::value)
+    {
+        for (auto host : whitelist)
+        {
+            if (host.asString().rfind(pReq->getHeader("origin"), 0) == 0)
+            {
+                result = true;
+                break;
+            }
+        }
+    }
+
+    if (std::is_same<T, std::vector>::value)
+    {
+        for (const auto &host : whitelist)
+        {
+            if (host.rfind(pReq->getHeader("origin"), 0) == 0)
+            {
+                result = true;
+                break;
+            }
+        }
+    }
+
+
+    co_return result;
 }

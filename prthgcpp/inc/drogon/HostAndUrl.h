@@ -83,6 +83,32 @@ namespace prthgcpp::drogon
          * @return Task<void> 
          */
         Task<void> EvaluateHostIsAllowedTask(HttpRequestPtr pReq, const std::string allowedHost, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback);
+
+
+        /**
+         * @brief TMP
+         * 
+         * @tparam T 
+         * @param pReq 
+         * @param whitelist 
+         * @return true 
+         * @return false 
+         */
+        template <typename T>
+        bool EvaluateOriginIsAllowed(HttpRequestPtr pReq, T whitelist) const;
+
+        /**
+         * @brief TMP
+         * 
+         * @note coroutine
+         * 
+         * @tparam T 
+         * @param pReq 
+         * @param whitelist 
+         * @return Task<bool> 
+         */
+        template <typename T>
+        Task<bool> EvaluateOriginIsAllowedTask(HttpRequestPtr pReq, T whitelist) const;
     };
 
 

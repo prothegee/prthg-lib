@@ -52,6 +52,7 @@ namespace prthgcpp
     {
         undefined = 0,
         CBC_AES,
+        XChaCha20,
     };
 
 

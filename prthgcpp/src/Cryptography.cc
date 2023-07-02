@@ -1,4 +1,5 @@
 #include "prthgcpp/inc/Cryptography.h"
+#include "prthgcpp/inc/Utility.h"
 
 #include <cryptopp/ec2n.h>
 #include <cryptopp/hex.h>
@@ -16,6 +17,7 @@
 #include <cryptopp/sha.h>
 #include <cryptopp/gcm.h>
 #include <cryptopp/aes.h>
+#include <cryptopp/chacha.h>
 
 
 prthgcpp::CCryptography::CCryptography()
@@ -33,9 +35,9 @@ prthgcpp::CCryptography::~CCryptography()
 
 
 
-std::string prthgcpp::CCryptography::GenerateSHA(std::string input, const prthgcpp::ECCryptShaLength shaLength) const
+std::string prthgcpp::CCryptography::GenerateSHA(std::string input, const prthgcpp::ECCryptShaLength shaLength, const bool &lowerCase) const
 {
-    std::string result;
+    std::string result, resultTmp;
 
 
     switch (shaLength)
@@ -48,7 +50,7 @@ std::string prthgcpp::CCryptography::GenerateSHA(std::string input, const prthgc
 
             hash.CalculateDigest(digest, (CryptoPP::byte*) input.c_str(), input.length());
 
-            encoder.Attach(new CryptoPP::StringSink(result));
+            encoder.Attach(new CryptoPP::StringSink(resultTmp));
             encoder.Put(digest, sizeof(digest));
             encoder.MessageEnd();
         }
@@ -63,7 +65,7 @@ std::string prthgcpp::CCryptography::GenerateSHA(std::string input, const prthgc
 
             hash.CalculateDigest(digest, (CryptoPP::byte*) input.c_str(), input.length());
 
-            encoder.Attach(new CryptoPP::StringSink(result));
+            encoder.Attach(new CryptoPP::StringSink(resultTmp));
             encoder.Put(digest, sizeof(digest));
             encoder.MessageEnd();
         }
@@ -78,7 +80,7 @@ std::string prthgcpp::CCryptography::GenerateSHA(std::string input, const prthgc
 
             hash.CalculateDigest(digest, (CryptoPP::byte*) input.c_str(), input.length());
 
-            encoder.Attach(new CryptoPP::StringSink(result));
+            encoder.Attach(new CryptoPP::StringSink(resultTmp));
             encoder.Put(digest, sizeof(digest));
             encoder.MessageEnd();
         }
@@ -93,7 +95,7 @@ std::string prthgcpp::CCryptography::GenerateSHA(std::string input, const prthgc
 
             hash.CalculateDigest(digest, (CryptoPP::byte*) input.c_str(), input.length());
 
-            encoder.Attach(new CryptoPP::StringSink(result));
+            encoder.Attach(new CryptoPP::StringSink(resultTmp));
             encoder.Put(digest, sizeof(digest));
             encoder.MessageEnd();
         }
@@ -108,11 +110,22 @@ std::string prthgcpp::CCryptography::GenerateSHA(std::string input, const prthgc
 
             hash.CalculateDigest(digest, (CryptoPP::byte*) input.c_str(), input.length());
 
-            encoder.Attach(new CryptoPP::StringSink(result));
+            encoder.Attach(new CryptoPP::StringSink(resultTmp));
             encoder.Put(digest, sizeof(digest));
             encoder.MessageEnd();
         }
         break;
+    }
+
+
+    if (lowerCase)
+    {
+        prthgcpp::CUtility util;
+        result = util.ForceInputToCaseOf(resultTmp, ECLetterCase::lowercase);
+    }
+    else
+    {
+        result = resultTmp;
     }
 
 
@@ -160,9 +173,10 @@ std::string prthgcpp::CCryptography::GeneratePasswordHasher(std::string input, c
 
 
 
-std::string prthgcpp::CCryptography::StreamCipher(const prthgcpp::ECCryptCipherMode cipherMode, const prthgcpp::ECCryptStreamCipherMode streamCipherMode, std::string input, int initializeKey, int initializeVector) const
+std::string prthgcpp::CCryptography::StreamCipher(const prthgcpp::ECCryptCipherMode cipherMode, const prthgcpp::ECCryptStreamCipherMode streamCipherMode, std::string input, int initializeKey, int initializeVector,  std::string initializeKeyStr, std::string initializeVectorStr) const
 {
     std::string result;
+    std::string keyStr(initializeKeyStr), ivcStr(initializeVectorStr);
 
 
     switch (cipherMode)
@@ -181,6 +195,29 @@ std::string prthgcpp::CCryptography::StreamCipher(const prthgcpp::ECCryptCipherM
                 CryptoPP::StreamTransformationFilter encrypt(cbcEncryption, new CryptoPP::StringSink(result));
                 encrypt.Put(reinterpret_cast<const unsigned char*>(input.c_str()), input.length());
                 encrypt.MessageEnd();
+            }
+            else if (streamCipherMode == ECCryptStreamCipherMode::XChaCha20)
+            {
+                CryptoPP::HexEncoder encoder;
+                // std::string tmp;
+                // CryptoPP::HexEncoder encoder(new CryptoPP::StringSink(tmp));
+                std::string plain(input), cipher;
+
+                CryptoPP::SecByteBlock key((int)keyStr.size()), iv((int)ivcStr.size());
+
+                encoder.Put(key.data(), key.size());
+                encoder.MessageEnd();
+
+                encoder.Put(iv.data(), iv.size());
+                encoder.MessageEnd();
+
+                CryptoPP::XChaCha20::Encryption enc;    
+                enc.SetKeyWithIV(key, key.size(), iv, iv.size());
+
+                CryptoPP::StringSource ss1(plain, true, new CryptoPP::StreamTransformationFilter(enc, new CryptoPP::StringSink(result)));
+
+                encoder.Put((const CryptoPP::byte*)cipher.data(), cipher.size());
+                encoder.MessageEnd();
             }
         }
         break;
@@ -202,6 +239,26 @@ std::string prthgcpp::CCryptography::StreamCipher(const prthgcpp::ECCryptCipherM
                 CryptoPP::StreamTransformationFilter decrypt(cbcDecryption, new CryptoPP::StringSink(result));
                 decrypt.Put(reinterpret_cast<const unsigned char*>( input.c_str() ), input.size());
                 decrypt.MessageEnd();
+            }
+            else if (streamCipherMode == ECCryptStreamCipherMode::XChaCha20)
+            {
+                CryptoPP::HexEncoder encoder;
+                // std::string tmp;
+                // CryptoPP::HexEncoder encoder(new CryptoPP::StringSink(tmp));
+                std::string plain(input);
+
+                CryptoPP::SecByteBlock key((int)keyStr.size()), iv((int)ivcStr.size());
+
+                encoder.Put(key.data(), key.size());
+                encoder.MessageEnd();
+
+                encoder.Put(iv.data(), iv.size());
+                encoder.MessageEnd();
+
+                CryptoPP::XChaCha20::Decryption dec;    
+                dec.SetKeyWithIV(key, key.size(), iv, iv.size());
+
+                CryptoPP::StringSource ss2(plain, true, new CryptoPP::StreamTransformationFilter(dec, new CryptoPP::StringSink(result)));
             }
         }
         break;

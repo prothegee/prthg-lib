@@ -18,6 +18,11 @@ using namespace drogon;
 
 namespace prthgcpp::drogon
 {
+    #if _WIN32
+        #pragma warning (disable: 4114) // same type qualifier used more than once
+    #else
+        // what?
+    #endif
 
 
     /**
@@ -49,6 +54,7 @@ namespace prthgcpp::drogon
          */
         bool CheckOriginToAllowAccess(HttpRequestPtr pReq, Json::Value whitelistDomain);
 
+
         /**
          * @brief check current request origin is allowed from whitelist
          * 
@@ -72,6 +78,17 @@ namespace prthgcpp::drogon
         void EvaluateHostIsAllowed(HttpRequestPtr pReq, const std::string allowedHost, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback);
 
         /**
+         * @brief check current request host header is in allowedHost vector string, otherwise it's not acceptable
+         * 
+         * @param pReq 
+         * @param allowedHosts 
+         * @param pResp 
+         * @param callback 
+         */
+        void EvaluateHostsIsAllowed(HttpRequestPtr pReq, const std::vector<std::string> allowedHosts, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback);
+
+
+        /**
          * @brief check current request host header is in allowedHost, otherwise it's not acceptable
          * 
          * @note coroutine
@@ -84,6 +101,19 @@ namespace prthgcpp::drogon
          */
         Task<void> EvaluateHostIsAllowedTask(HttpRequestPtr pReq, const std::string allowedHost, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback);
 
+        /**
+         * @brief check current request host header is in allowedHost vector string, otherwise it's not acceptable
+         * 
+         * @note coroutine
+         * 
+         * @param pReq 
+         * @param allowedHosts 
+         * @param pResp 
+         * @param callback 
+         * @return Task<void> 
+         */
+        Task<void> EvaluateHostsIsAllowedTask(HttpRequestPtr pReq, const const std::vector<std::string> allowedHosts, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback);
+
 
         /**
          * @brief check origin header is allowed from whitelist json custom_config 'foo: [...]'
@@ -94,6 +124,7 @@ namespace prthgcpp::drogon
          * @return false 
          */
         bool EvaluateOriginIsAllowed(HttpRequestPtr pReq, Json::Value whitelist) const;
+
 
         /**
          * @brief check origin header is allowed from whitelist json custom_config 'foo: [...]'

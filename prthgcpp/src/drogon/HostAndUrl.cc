@@ -1,7 +1,5 @@
 #include "prthgcpp/inc/drogon/HostAndUrl.h"
 
-#include <type_traits>
-
 
 prthgcpp::drogon::CHostAndUrl::CHostAndUrl()
 {
@@ -60,15 +58,37 @@ Task<bool> prthgcpp::drogon::CHostAndUrl::CheckOriginToAllowAccessTask(HttpReque
 
 void prthgcpp::drogon::CHostAndUrl::EvaluateHostIsAllowed(HttpRequestPtr pReq, const std::string allowedHost, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback)
 {
-    bool result{};
+    bool allowed{};
 
 
     if (allowedHost.rfind(pReq->getHeader("host"), 0) == 0)
     {
-        result = true;
+        allowed = true;
     }
 
-    if (!result)
+    if (!allowed)
+    {
+        pResp = HttpResponse::newHttpResponse();
+        pResp->setStatusCode(k406NotAcceptable);
+
+        callback(pResp);
+    }
+}
+
+void prthgcpp::drogon::CHostAndUrl::EvaluateHostsIsAllowed(HttpRequestPtr pReq, const std::vector<std::string> allowedHosts, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback)
+{
+    bool allowed{false};
+
+    for (auto host : allowedHosts)
+    {
+        if (pReq->getHeader("host") == host)
+        {
+            allowed = true;
+            break;
+        }
+    }
+
+    if (!allowed)
     {
         pResp = HttpResponse::newHttpResponse();
         pResp->setStatusCode(k406NotAcceptable);
@@ -80,17 +100,45 @@ void prthgcpp::drogon::CHostAndUrl::EvaluateHostIsAllowed(HttpRequestPtr pReq, c
 
 
 
+
+
+
+
 Task<void> prthgcpp::drogon::CHostAndUrl::EvaluateHostIsAllowedTask(HttpRequestPtr pReq, const std::string allowedHost, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback)
 {
-    bool result{};
+    bool allowed{};
 
 
     if (allowedHost.rfind(pReq->getHeader("host"), 0) == 0)
     {
-        result = true;
+        allowed = true;
     }
 
-    if (!result)
+    if (!allowed)
+    {
+        pResp = HttpResponse::newHttpResponse();
+        pResp->setStatusCode(k406NotAcceptable);
+
+        callback(pResp);
+    }
+
+    co_return; // seems not right?
+}
+
+Task<void> prthgcpp::drogon::CHostAndUrl::EvaluateHostsIsAllowedTask(HttpRequestPtr pReq, const const std::vector<std::string> allowedHosts, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback)
+{
+    bool allowed{false};
+
+    for (auto host : allowedHosts)
+    {
+        if (pReq->getHeader("host") == host)
+        {
+            allowed = true;
+            break;
+        }
+    }
+
+    if (!allowed)
     {
         pResp = HttpResponse::newHttpResponse();
         pResp->setStatusCode(k406NotAcceptable);

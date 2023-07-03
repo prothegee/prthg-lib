@@ -135,6 +135,46 @@ std::string prthgcpp::CCryptography::GenerateSHA(std::string input, const prthgc
 
 
 
+
+
+
+
+std::string prthgcpp::CCryptography::GenerateBLAKE2b(std::string input, const bool &lowerCase) const
+{
+    std::string result, resultTmp;
+
+
+    CryptoPP::BLAKE2b hash;
+    CryptoPP::byte digest[CryptoPP::BLAKE2b::DIGESTSIZE];
+    CryptoPP::HexEncoder encoder;
+
+    hash.CalculateDigest(digest, (CryptoPP::byte*)input.c_str(), input.length());
+
+    encoder.Attach(new CryptoPP::StringSink(resultTmp));
+    encoder.Put(digest, sizeof(digest));
+    encoder.MessageEnd();
+
+    if (lowerCase)
+    {
+        prthgcpp::CUtility util;
+        result = util.ForceInputToCaseOf(resultTmp, ECLetterCase::lowercase);
+    }
+    else
+    {
+        result = resultTmp;
+    }
+
+
+    return result;
+}
+
+
+
+
+
+
+
+
 std::string prthgcpp::CCryptography::GeneratePasswordHasher(std::string input, const prthgcpp::ECCryptPasswordHasher passwordHasher, std::string salt) const
 {
     std::string result;

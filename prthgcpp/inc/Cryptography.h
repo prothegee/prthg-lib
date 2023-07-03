@@ -51,6 +51,9 @@ namespace prthgcpp
         std::string GenerateSHA(std::string input, const prthgcpp::ECCryptShaLength shaLength, const bool &lowerCase) const;
 
 
+        std::string GenerateBLAKE2b(std::string input, const bool &lowerCase) const;
+
+
         /**
          * @brief generate password hasher
          * 

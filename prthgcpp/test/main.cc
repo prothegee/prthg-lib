@@ -73,6 +73,7 @@ int main()
 
     std::string L40 = crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L40, false);
     std::cout << L40 << "\n";
+    std::cout << crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L40, true) << "\n\n";
     if (L40.length() != 40)
     {
         errorCount += 1;
@@ -81,6 +82,7 @@ int main()
 
     std::string L56 = crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L56, false);
     std::cout << L56 << "\n";
+    std::cout << crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L56, true) << "\n\n";
     if (L56.length() != 56)
     {
         errorCount += 1;
@@ -89,6 +91,7 @@ int main()
 
     std::string L64 = crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L64, false);
     std::cout << L64 << "\n";
+    std::cout << crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L64, true) << "\n\n";
     if (L64.length() != 64)
     {
         errorCount += 1;
@@ -97,6 +100,7 @@ int main()
 
     std::string L96 = crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L96, false);
     std::cout << L96 << "\n";
+    std::cout << crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L96, true) << "\n\n";
     if (L96.length() != 96)
     {
         errorCount += 1;
@@ -105,11 +109,17 @@ int main()
 
     std::string L128 = crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L128, false);
     std::cout << L128 << "\n";
+    std::cout << crypt.GenerateSHA(inputSha, prthgcpp::ECCryptShaLength::L128, true) << "\n\n";
     if (L128.length() != 128)
     {
         errorCount += 1;
         std::cout << "(ERR) - L128 length is not 128\n";
     }
+
+
+    std::cout << "\n(MSG) - generate blake2b from unique@mail.com" << "\n";
+    std::cout << crypt.GenerateBLAKE2b(inputSha, false) << "\n";
+    std::cout << crypt.GenerateBLAKE2b(inputSha, true) << "\n";
 
 
     std::cout << "\n(MSG) - checking password hasher SCRYPT" << "\n";

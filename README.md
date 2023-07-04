@@ -2,7 +2,7 @@
 
 __*prthg-lib project source code*__
 
-__*currently only used on internal projects*__
+__*currently only used on internal projects as extended tools*__
 
 <br>
 
@@ -22,11 +22,13 @@ __*currently only used on internal projects*__
             - [jsoncpp](https://github.com/open-source-parsers/jsoncpp)
 
         - optional:
-            - [drogonframework](https://github.com/drogonframework/drogon)
-            - [cryptopp](https://github.com/weidai11/cryptopp)
+            - [drogonframework](https://github.com/drogonframework/drogon):
+                - for drogon framework backend integration
+            - [cryptopp](https://github.com/weidai11/cryptopp):
+                - for hash & stream cipher integration
 
     - note:
-        - using c++20 by default
+        - using *c++20* by default, otheriwse *c++17*
         - all coroutine function will be marked with Task suffix ( e.g. __*MyCallerTask()*__ )
 
 <br>

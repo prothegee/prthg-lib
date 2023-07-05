@@ -18,7 +18,12 @@ prthgcpp::drogon::CViewContent::~CViewContent()
 
 void prthgcpp::drogon::CViewContent::InvokePublicView(HttpRequestPtr &pReq)
 {
-    // reserved
+    // username
+    std::string username;
+    (pReq->session()->get<std::string>("username").length() <= 0)
+        ? username = "guest"
+        : username = pReq->session()->get<std::string>("username");
+    _view.insert("username", username);
 }
 
 

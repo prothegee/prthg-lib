@@ -1,5 +1,5 @@
 /**
- * @file EStorage.ts
+ * @file StorageEnums.ts
  * @author Prana Ron (prthg@proton.me)
  * 
  * @brief internal enums collection for Storage keyword/prefix

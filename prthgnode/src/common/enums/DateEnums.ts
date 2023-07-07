@@ -1,5 +1,5 @@
 /**
- * @file StorageEnums.ts
+ * @file DateEnums.ts
  * @author Prana Ron (prthg@proton.me)
  * 
  * @brief internal enums collection for Storage keyword/prefix
@@ -11,14 +11,18 @@
  * 
 */
 /**
- * @brief project local storage enum
- * 
- * @note each value represent key on Local Storage
+ * @brief project enum for date and time format
 */
-export enum EStorageLocal
+export enum EDateAndTimeFormat
 {
-    /**
-     * @note user default language enum
-    */
-    _default_language = 0
+    undefined = 0,
+    FULL_TIMESTAMP,
+    YYYYMMDD,
+    YYYY,
+    MM,
+    DD,
+    hhmmss,
+    hh,
+    mm,
+    ss,
 }

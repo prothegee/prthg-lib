@@ -53,9 +53,11 @@ add_library(${PROJECT_NAME}
     prthgcpp/prthgcpp.cc
 
     prthgcpp/src/Cryptography.cc
+    prthgcpp/src/DateAndTime.cc
     prthgcpp/src/Utility.cc
 
     prthgcpp/src/drogon/HostAndUrl.cc
+    prthgcpp/src/drogon/MailSystem.cc
     prthgcpp/src/drogon/ViewContent.cc
 )
 # ########################################################################
@@ -81,6 +83,10 @@ if (PRTHGLIB_AS_SUBDIR)
     if (PRTHGLIB_INC_CRYPTOPP)
         target_link_libraries(${PROJECT_NAME}  PRIVATE cryptopp::cryptopp)
     endif()
+
+    if (PRTHGLIB_INC_MAILIO)
+        target_link_libraries(${PROJECT_NAME} PRIVATE mailio)
+    endif()
 else()
     message(STATUS "(MSG) - ${PROJECT_NAME}: treated as project")
 
@@ -95,6 +101,11 @@ else()
     if (PRTHGLIB_INC_CRYPTOPP)
         find_package(cryptopp CONFIG REQUIRED)
         target_link_libraries(${PROJECT_NAME}  PRIVATE cryptopp::cryptopp)
+    endif()
+
+    if (PRTHGLIB_INC_MAILIO)
+        find_package(mailio CONFIG REQUIRED)
+        target_link_libraries(${PROJECT_NAME} PRIVATE mailio)
     endif()
 endif()
 # ########################################################################

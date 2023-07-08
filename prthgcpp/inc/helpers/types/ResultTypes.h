@@ -13,10 +13,7 @@
 #ifndef PRTHGCPP_RESULT_TYPES_H
 #define PRTHGCPP_RESULT_TYPES_H
 #include <string>
-#include <vector>
 #include <array>
-
-#include "prthgcpp/inc/helpers/enums/UserEnums.h"
 
 
 namespace prthgcpp
@@ -24,14 +21,14 @@ namespace prthgcpp
 
 
     /**
-     * @brief typedef common result with message
+     * @brief type struct common result with message
      * 
      */
-    typedef struct
+    struct TResultCommon
     {
-        bool m_result;
+        bool m_isOk;
         std::string m_message;
-    } TResultCommon;
+    };
 
 
     /**
@@ -41,9 +38,9 @@ namespace prthgcpp
      * @tparam T2 either use ECUserRoleOrg or EUserRoleOrg for m_userRolesOrg
      */
     template<typename T1, typename T2>
-    struct TSResultSignIn
+    struct TResultSignIn
     {
-        bool m_result;
+        bool m_isOk;
         std::string m_message;
         std::string m_email;
         std::string m_username;
@@ -57,6 +54,5 @@ namespace prthgcpp
 
 
 } // namespace prthgcpp
-
 
 #endif // PRTHGCPP_RESULT_TYPES_H

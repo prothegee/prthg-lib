@@ -24,6 +24,24 @@ void prthgcpp::drogon::CViewContent::InvokePublicView(HttpRequestPtr &pReq)
         ? username = "guest"
         : username = pReq->session()->get<std::string>("username");
     _view.insert("username", username);
+
+
+    // protocol
+    _view.insert("protocol", (app().getCustomConfig()["roothost"].asInt() == 1) ? "http://" : "https://");
+
+
+    // roothost
+    std::string roothost = app().getCustomConfig()["roothost"].asString();
+    _view.insert("roothost", roothost);
+
+
+    // currentPath
+    _view.insert("currentPath", pReq->getPath());
+
+
+    // is_signedIn
+    bool is_signedIn;
+    _view.insert("is_signedIn", (pReq->session()->get<bool>("is_signedIn")) ? "true" : "false");
 }
 
 

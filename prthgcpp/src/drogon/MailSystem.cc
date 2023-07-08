@@ -16,9 +16,9 @@ prthgcpp::drogon::CMailSystem::~CMailSystem()
 
 
 
-prthgcpp::TResultMessage prthgcpp::drogon::CMailSystem::SMailioTLS::SendTextMessage(const std::string senderName, const std::string senderEmail, const std::string recipientName, const std::string recipientEmail, const std::string mailSubject, const std::string mailContent, const std::string mailServer, const std::string mailAuthUser, const std::string mailAuthPassword) const
+prthgcpp::TResultCommon prthgcpp::drogon::CMailSystem::SMailioTLS::SendTextMessage(const std::string senderName, const std::string senderEmail, const std::string recipientName, const std::string recipientEmail, const std::string mailSubject, const std::string mailContent, const std::string mailServer, const std::string mailAuthUser, const std::string mailAuthPassword) const
 {
-    TResultMessage result;
+    TResultCommon result;
 
 
     /*
@@ -82,9 +82,9 @@ prthgcpp::TResultMessage prthgcpp::drogon::CMailSystem::SMailioTLS::SendTextMess
 
 
 
-Task<prthgcpp::TResultMessage> prthgcpp::drogon::CMailSystem::SMailioTLS::SendTextMessageTask(const std::string senderName, const std::string senderEmail, const std::string recipientName, const std::string recipientEmail, const std::string mailSubject, const std::string mailContent, const std::string mailServer, const std::string mailAuthUser, const std::string mailAuthPassword) const
+Task<prthgcpp::TResultCommon> prthgcpp::drogon::CMailSystem::SMailioTLS::SendTextMessageTask(const std::string senderName, const std::string senderEmail, const std::string recipientName, const std::string recipientEmail, const std::string mailSubject, const std::string mailContent, const std::string mailServer, const std::string mailAuthUser, const std::string mailAuthPassword) const
 {
-    TResultMessage result;
+    TResultCommon result;
 
 
     /*

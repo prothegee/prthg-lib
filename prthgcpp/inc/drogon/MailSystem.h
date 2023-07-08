@@ -74,9 +74,9 @@ namespace prthgcpp::drogon
              * @param mailServer 
              * @param mailAuthUser 
              * @param mailAuthPassword 
-             * @return prthgcpp::TResultMessage 
+             * @return prthgcpp::TResultCommon 
              */
-            prthgcpp::TResultMessage SendTextMessage(const std::string senderName, const std::string senderEmail, const std::string recipientName, const std::string recipientEmail, const std::string mailSubject, const std::string mailContent, const std::string mailServer, const std::string mailAuthUser, const std::string mailAuthPassword) const;
+            prthgcpp::TResultCommon SendTextMessage(const std::string senderName, const std::string senderEmail, const std::string recipientName, const std::string recipientEmail, const std::string mailSubject, const std::string mailContent, const std::string mailServer, const std::string mailAuthUser, const std::string mailAuthPassword) const;
 
             /**
              * @brief send email text using mailio tls method
@@ -93,9 +93,9 @@ namespace prthgcpp::drogon
              * @param mailServer 
              * @param mailAuthUser 
              * @param mailAuthPassword 
-             * @return Task<prthgcpp::TResultMessage> 
+             * @return Task<prthgcpp::TResultCommon> 
              */
-            Task<prthgcpp::TResultMessage> SendTextMessageTask(const std::string senderName, const std::string senderEmail, const std::string recipientName, const std::string recipientEmail, const std::string mailSubject, const std::string mailContent, const std::string mailServer, const std::string mailAuthUser, const std::string mailAuthPassword) const;
+            Task<prthgcpp::TResultCommon> SendTextMessageTask(const std::string senderName, const std::string senderEmail, const std::string recipientName, const std::string recipientEmail, const std::string mailSubject, const std::string mailContent, const std::string mailServer, const std::string mailAuthUser, const std::string mailAuthPassword) const;
         };
     };
 

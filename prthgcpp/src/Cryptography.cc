@@ -175,14 +175,14 @@ std::string prthgcpp::CCryptography::GenerateBLAKE2b(std::string input, const bo
 
 
 
-std::string prthgcpp::CCryptography::GeneratePasswordHasher(std::string input, const prthgcpp::ECCryptPasswordHasher passwordHasher, std::string salt) const
+std::string prthgcpp::CCryptography::GeneratePasswordHasher(std::string input, const prthgcpp::ECCryptHasherMode passwordHasher, std::string salt) const
 {
     std::string result;
 
 
     switch (passwordHasher)
     {
-        case ECCryptPasswordHasher::SCRYPT:
+        case ECCryptHasherMode::SCRYPT:
         {
             std::string passwd_input(input), salt_input(salt);
 

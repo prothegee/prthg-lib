@@ -124,8 +124,8 @@ int main()
 
     std::cout << "\n(MSG) - checking password hasher SCRYPT" << "\n";
     std::string password = "mypassword123", salt = "supersalt123", passwordHash, passwordCheck;
-    passwordHash = crypt.GeneratePasswordHasher(password, prthgcpp::ECCryptPasswordHasher::SCRYPT, salt);
-    passwordCheck = crypt.GeneratePasswordHasher(password, prthgcpp::ECCryptPasswordHasher::SCRYPT, salt);
+    passwordHash = crypt.GeneratePasswordHasher(password, prthgcpp::ECCryptHasherMode::SCRYPT, salt);
+    passwordCheck = crypt.GeneratePasswordHasher(password, prthgcpp::ECCryptHasherMode::SCRYPT, salt);
     std::cout << "passwordHash:\n" << passwordHash << "\n\n";
     std::cout << "passwordCheck:\n" << passwordCheck << "\n\n";
     if (passwordHash != passwordCheck)

@@ -24,7 +24,7 @@ namespace prthgcpp
 
 
     /**
-     * @brief type common result with message
+     * @brief typedef common result with message
      * 
      */
     typedef struct
@@ -34,7 +34,14 @@ namespace prthgcpp
     } TResultCommon;
 
 
-    typedef struct
+    /**
+     * @brief type struct result when do sign-in
+     * 
+     * @tparam T1 either use ECUserRole or EUserRole for m_userRoles
+     * @tparam T2 either use ECUserRoleOrg or EUserRoleOrg for m_userRolesOrg
+     */
+    template<typename T1, typename T2>
+    struct TSResultSignIn
     {
         bool m_result;
         std::string m_message;
@@ -44,9 +51,9 @@ namespace prthgcpp
         std::string m_tokenIOT;
         std::string m_tokenMobile;
         std::string m_tokenDesktop;
-        std::array<prthgcpp::EUserRole, 4> m_userRoles;
-        std::array<prthgcpp::EUserRoleOrg, 4> m_userRolesOrg;
-    } TResultSignIn;
+        std::array<T1, 4> m_userRoles;
+        std::array<T2, 4> m_userRolesOrg;
+    };
 
 
 } // namespace prthgcpp

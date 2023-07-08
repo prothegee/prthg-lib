@@ -64,7 +64,7 @@ namespace prthgcpp
          * @param salt 
          * @return std::string 
          */
-        std::string GeneratePasswordHasher(std::string input, const prthgcpp::ECCryptPasswordHasher passwordHasher, std::string salt) const;
+        std::string GeneratePasswordHasher(std::string input, const prthgcpp::ECCryptHasherMode passwordHasher, std::string salt) const;
 
 
         /**

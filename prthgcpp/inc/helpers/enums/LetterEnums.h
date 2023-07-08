@@ -25,6 +25,13 @@ namespace prthgcpp
         lowercase,
         uppercase,
     };
+    // enum of letter case
+    enum ELetterCase : int
+    {
+        eLetterCase_undefined = 0,
+        eLetterCase_lowercase,
+        eLetterCase_uppercase,
+    };
 
 
 } // namespace prthgcpp

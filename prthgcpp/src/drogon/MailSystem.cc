@@ -56,19 +56,19 @@ prthgcpp::TResultCommon prthgcpp::drogon::CMailSystem::SMailioTLS::SendTextMessa
 
         conn.submit(msg);
 
-        result.m_result = true;
+        result.m_isOk = true;
         result.m_message = "Email has been sent";
     }
     catch(mailio::smtp_error &e)
     {
-        result.m_result = false;
+        result.m_isOk = false;
         result.m_message = e.what();
 
         std::cout << "(ERR) - " << result.m_message << "\n";
     }
     catch(mailio::dialog_error &e)
     {
-        result.m_result = false;
+        result.m_isOk = false;
         result.m_message = e.what();
 
         std::cout << "(ERR) - " << result.m_message << "\n";
@@ -122,19 +122,19 @@ Task<prthgcpp::TResultCommon> prthgcpp::drogon::CMailSystem::SMailioTLS::SendTex
 
         conn.submit(msg);
 
-        result.m_result = true;
+        result.m_isOk = true;
         result.m_message = "Email has been sent";
     }
     catch(mailio::smtp_error &e)
     {
-        result.m_result = false;
+        result.m_isOk = false;
         result.m_message = e.what();
 
         std::cout << "(ERR) - " << result.m_message << "\n";
     }
     catch(mailio::dialog_error &e)
     {
-        result.m_result = false;
+        result.m_isOk = false;
         result.m_message = e.what();
 
         std::cout << "(ERR) - " << result.m_message << "\n";

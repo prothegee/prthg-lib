@@ -27,12 +27,11 @@ void prthgcpp::drogon::CViewContent::InvokePublicView(HttpRequestPtr &pReq)
 
 
     // protocol
-    _view.insert("protocol", (app().getCustomConfig()["roothost"].asInt() == 1) ? "http://" : "https://");
+    _view.insert("protocol", (app().getCustomConfig()["status"].asInt() == 1) ? "http://" : "https://");
 
 
     // roothost
-    std::string roothost = app().getCustomConfig()["roothost"].asString();
-    _view.insert("roothost", roothost);
+    _view.insert("roothost", app().getCustomConfig()["roothost"].asString());
 
 
     // currentPath
@@ -40,7 +39,6 @@ void prthgcpp::drogon::CViewContent::InvokePublicView(HttpRequestPtr &pReq)
 
 
     // is_signedIn
-    bool is_signedIn;
     _view.insert("is_signedIn", (pReq->session()->get<bool>("is_signedIn")) ? "true" : "false");
 }
 

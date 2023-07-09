@@ -40,6 +40,10 @@ void prthgcpp::drogon::CViewContent::InvokePublicView(HttpRequestPtr &pReq)
 
     // is_signedIn
     _view.insert("is_signedIn", (pReq->session()->get<bool>("is_signedIn")) ? "true" : "false");
+
+
+    // JSESSIONID
+    _view.insert("JSESSIONID", pReq->getCookie("JSESSIONID"));
 }
 
 

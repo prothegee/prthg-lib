@@ -28,7 +28,8 @@ namespace prthgcpp
         is_sudo, // 1st authorithy, able to do anything mostly
         is_admin, // 2nd authorithy, able to do anything, except delete user with sudo role
         is_staff, // 3rd authorithy, able to do anything, except delete user
-        is_default, // common to sign-in requirement
+        is_editor_of_content, // only allowed to edit internal content
+        is_default, // common to sign-in requirement LAST
     };
     enum EUserRole : int
     {
@@ -36,7 +37,8 @@ namespace prthgcpp
         eUserRole_sudo, // 1st authorithy, able to do anything mostly
         eUserRole_admin, // 2nd authorithy, able to do anything, except delete user with sudo role
         eUserRole_staff, // 3rd authorithy, able to do anything, except delete user
-        eUserRole_default, // common to sign-in requirement
+        eUserRole_editor_of_content, // only allowed to edit internal content
+        eUserRole_default, // common to sign-in requirement LAST
     };
 
     
@@ -47,9 +49,12 @@ namespace prthgcpp
     {
         undefined = 0,
         is_owner, // 1st authorithy, able to do anything mostly in their organization/vendor/tenant
-        is_administrative, // 2nd authorithy, able to do anything, except delete user with owner role in their organization/vendor/tenant
+        is_manager, // 2nd authorithy, able to do anything, except remove user role with owner role in their organization/vendor/tenant
+        is_analytic, // 3rd authorithy, only able to do anylytic stuff in their organization/vendor/tenant
         is_editor_of_content, // 3rd authorithy, only able to edit content in their organization/vendor/tenant
-        is_editor_of_cashier, // 4th authorithy, only able to edit cashier in their organization/vendor/tenant
+        is_editor_of_item_stock, // 3rd authorithy, only able to edit item stock in their organization/vendor/tenant
+        is_editor_of_item_product, // 3rd authorithy, only able to edit item product view in their organization/vendor/tenant
+        is_editor_of_cashier_or_order, // 3rd authorithy, only able to edit cashier/product order in their organization/vendor/tenant
     };
     // enum of user role organization/vendor/tenant, meaning
     // part of an organization/vendor creation
@@ -57,10 +62,13 @@ namespace prthgcpp
     enum EUserRoleOrg : int
     {
         eUserRoleOrg_undefined = 0,
-        eUserRoleOrg_isOwner, // 1st authorithy, able to do anything mostly in their organization/vendor/tenant
-        eUserRoleOrg_isAdministrative, // 2nd authorithy, able to do anything, except delete user with owner role in their organization/vendor/tenant
-        eUserRoleOrg_isEditorOfContent, // 3rd authorithy, only able to edit content in their organization/vendor/tenant
-        eUserRoleOrg_isEditorOfCashier, // 4th authorithy, only able to edit cashier in their organization/vendor/tenant
+        eUserRoleOrg_owner, // 1st authorithy, able to do anything mostly in their organization/vendor/tenant
+        eUserRoleOrg_manager, // 2nd authorithy, able to do anything, except remove user role with owner role in their organization/vendor/tenant
+        eUserRoleOrg_analytic, // 3rd authorithy, only able to do anylytic stuff in their organization/vendor/tenant
+        eUserRoleOrg_editor_of_content, // 3rd authorithy, only able to edit content in their organization/vendor/tenant
+        eUserRoleOrg_editor_of_item_stock, // 3rd authorithy, only able to edit item stock in their organization/vendor/tenant
+        eUserRoleOrg_editor_of_item_product, // 3rd authorithy, only able to edit item product view in their organization/vendor/tenant
+        eUserRoleOrg_editor_of_cashier_or_order, // 3rd authorithy, only able to edit cashier/product order in their organization/vendor/tenant
     };
 
 

@@ -10,11 +10,35 @@
  */
 #ifndef PRTHGCPP_CRYPTOHRAPHY_H
 #define PRTHGCPP_CRYPTOHRAPHY_H
+#include "prthgcpp/config.h"
+
+
+#ifdef __PRTHGLIB_INC_CRYPTOPP__
 #include <iostream>
 #include <string>
 
 #include "prthgcpp/inc/helpers/enums/CryptEnums.h"
 #include "prthgcpp/inc/helpers/enums/LetterEnums.h"
+#include "prthgcpp/inc/Utility.h"
+
+
+#include <cryptopp/ec2n.h>
+#include <cryptopp/hex.h>
+#include <cryptopp/modes.h>
+#include <cryptopp/files.h>
+#include <cryptopp/osrng.h>
+#include <cryptopp/cryptlib.h>
+#include <cryptopp/secblock.h>
+#include <cryptopp/filters.h>
+#include <cryptopp/hex.h>
+#include <cryptopp/words.h>
+
+#include <cryptopp/blake2.h>
+#include <cryptopp/scrypt.h>
+#include <cryptopp/sha.h>
+#include <cryptopp/gcm.h>
+#include <cryptopp/aes.h>
+#include <cryptopp/chacha.h>
 
 
 namespace prthgcpp
@@ -109,6 +133,9 @@ namespace prthgcpp
 
 
 } // namespace prthgcpp
+
+
+#endif // __PRTHGLIB_INC_CRYPTOPP__
 
 
 #endif // PRTHGCPP_CRYPTOHRAPHY_H

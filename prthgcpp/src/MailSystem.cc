@@ -1,11 +1,12 @@
-#include "prthgcpp/inc/drogon/MailSystem.h"
+#include "prthgcpp/inc/MailSystem.h"
+#include "MailSystem.h"
 
 
-prthgcpp::drogon::CMailSystem::CMailSystem()
+prthgcpp::CMailSystem::CMailSystem()
 {
 }
 
-prthgcpp::drogon::CMailSystem::~CMailSystem()
+prthgcpp::CMailSystem::~CMailSystem()
 {
 }
 
@@ -16,7 +17,7 @@ prthgcpp::drogon::CMailSystem::~CMailSystem()
 
 
 
-prthgcpp::TResultCommon prthgcpp::drogon::CMailSystem::SMailioTLS::SendTextMessage(const std::string senderName, const std::string senderEmail, const std::string recipientName, const std::string recipientEmail, const std::string mailSubject, const std::string mailContent, const std::string mailServer, const std::string mailAuthUser, const std::string mailAuthPassword) const
+prthgcpp::TResultCommon prthgcpp::CMailSystem::SMailioTLS::SendTextMessage(const std::string senderName, const std::string senderEmail, const std::string recipientName, const std::string recipientEmail, const std::string mailSubject, const std::string mailContent, const std::string mailServer, const std::string mailAuthUser, const std::string mailAuthPassword) const
 {
     TResultCommon result;
 
@@ -24,8 +25,8 @@ prthgcpp::TResultCommon prthgcpp::drogon::CMailSystem::SMailioTLS::SendTextMessa
     /*
     example usage function:
 
-    prthgcpp::drogon::CMailSystem::SMailioTLS mailsys;
-    auto result = mailsys.SendTextMessage(
+    prthgcpp::CMailSystem::SMailioTLS mailiosys;
+    auto result = mailiosys.SendTextMessage(
         "sendername", "sender@domain.tld",
         "recipient", "recipient@domain.tld",
         "[subject] - foo of bar", "It's a foo bar\n\n---\n\nbaz baz!",
@@ -33,7 +34,8 @@ prthgcpp::TResultCommon prthgcpp::drogon::CMailSystem::SMailioTLS::SendTextMessa
         "mailauth@domain.tld", "mailauthpassword"
     );
     */
-    // 
+    /**/ 
+    
 
 
     try
@@ -82,16 +84,16 @@ prthgcpp::TResultCommon prthgcpp::drogon::CMailSystem::SMailioTLS::SendTextMessa
 
 
 
-Task<prthgcpp::TResultCommon> prthgcpp::drogon::CMailSystem::SMailioTLS::SendTextMessageTask(const std::string senderName, const std::string senderEmail, const std::string recipientName, const std::string recipientEmail, const std::string mailSubject, const std::string mailContent, const std::string mailServer, const std::string mailAuthUser, const std::string mailAuthPassword) const
+Task<prthgcpp::TResultCommon> prthgcpp::CMailSystem::SMailioTLS::SendTextMessageTask(const std::string senderName, const std::string senderEmail, const std::string recipientName, const std::string recipientEmail, const std::string mailSubject, const std::string mailContent, const std::string mailServer, const std::string mailAuthUser, const std::string mailAuthPassword) const
 {
-    TResultCommon result;
+    prthgcpp::TResultCommon result;
 
 
     /*
     example usage function:
 
-    prthgcpp::drogon::CMailSystem::SMailioTLS mailsys;
-    auto result = co_await mailsys.SendTextMessageTask(
+    prthgcpp::CMailSystem::SMailioTLS mailiosys;
+    auto result = co_await mailiosys.SendTextMessageTask(
         "sendername", "sender@domain.tld",
         "recipient", "recipient@domain.tld",
         "[subject] - foo of bar", "It's a foo bar\n\n---\n\nbaz baz!",
@@ -99,7 +101,7 @@ Task<prthgcpp::TResultCommon> prthgcpp::drogon::CMailSystem::SMailioTLS::SendTex
         "mailauth@domain.tld", "mailauthpassword"
     );
     */
-    // 
+    
 
 
     try

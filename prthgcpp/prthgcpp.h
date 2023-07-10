@@ -19,12 +19,24 @@
     #undef max
 #endif // _WIN32
 #include <memory>
-#include <drogon/drogon.h>
 
-#include "prthgcpp/inc/Cryptography.h"
+
+#include "prthgcpp/config.h"
+
+
+#ifdef __PRTHGLIB_INC_CRYPTOPP__
+    #include "prthgcpp/inc/Cryptography.h"
+#endif
+
+
 #include "prthgcpp/inc/Utility.h"
 
-#include "prthgcpp/inc/drogon/HostAndUrl.h"
+
+#ifdef __PRTHGLIB_INC_DROGON__
+    #include <drogon/drogon.h>
+
+    #include "prthgcpp/inc/drogon/HostAndUrl.h"
+#endif
 
 
 namespace prthgcpp
@@ -43,13 +55,16 @@ namespace prthgcpp
         ~SGlobal();
 
 
+        #ifdef __PRTHGLIB_INC_CRYPTOPP__
         // cryptography shared pointer
         static inline std::shared_ptr<prthgcpp::CCryptography> pCryptography = std::make_shared<prthgcpp::CCryptography>();
+        #endif
 
         // utility shared pointer
         static inline std::shared_ptr<prthgcpp::CUtility> pUtility = std::make_shared<prthgcpp::CUtility>();
 
 
+        #ifdef __PRTHGLIB_INC_DROGON__
         struct SDrogonFramework
         {
             // host and url shared pointer
@@ -58,6 +73,7 @@ namespace prthgcpp
 
         // optional pointer to prthgcpp drogon namespace
         static inline std::shared_ptr<SDrogonFramework> pDrogonFramework = std::make_shared<SDrogonFramework>();
+        #endif
 
 
         /**

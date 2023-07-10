@@ -55,9 +55,9 @@ add_library(${PROJECT_NAME}
     prthgcpp/src/Cryptography.cc
     prthgcpp/src/DateAndTime.cc
     prthgcpp/src/Utility.cc
+    prthgcpp/src/MailSystem.cc
 
     prthgcpp/src/drogon/HostAndUrl.cc
-    prthgcpp/src/drogon/MailSystem.cc
     prthgcpp/src/drogon/ViewContent.cc
 )
 # ########################################################################
@@ -108,6 +108,27 @@ else()
         target_link_libraries(${PROJECT_NAME} PRIVATE mailio)
     endif()
 endif()
+
+
+# ########################################################################
+
+
+# ########################################################################
+add_definitions(-D__PRTHGLIB_MAJOR__=${PRTHGLIB_MAJOR})
+add_definitions(-D__PRTHGLIB_MINOR__=${PRTHGLIB_MINOR})
+add_definitions(-D__PRTHGLIB_PATCH__=${PRTHGLIB_PATCH})
+add_definitions(-D__PRTHGLIB_DATES__=${PRTHGLIB_DATES})
+
+add_definitions(-D__PRTHGLIB_AS_SUBDIR__=${PRTHGLIB_AS_SUBDIR})
+add_definitions(-D__PRTHGLIB_INC_DROGON__=${PRTHGLIB_INC_DROGON})
+add_definitions(-D__PRTHGLIB_INC_CRYPTOPP__=${PRTHGLIB_INC_CRYPTOPP})
+add_definitions(-D__PRTHGLIB_INC_MAILIO__=${PRTHGLIB_INC_MAILIO})
+# ########################################################################
+
+
+# ########################################################################
+configure_file( ${PROJECT_SOURCE_DIR}/prthgcpp/config.h.in ${PROJECT_SOURCE_DIR}/prthgcpp/config.h )
+include_directories( ${PROJECT_SOURCE_DIR}/ )
 # ########################################################################
 
 

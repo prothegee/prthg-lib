@@ -10,6 +10,10 @@
  */
 #ifndef PRTHGCPP_DROGON_HOST_AND_URL_H
 #define PRTHGCPP_DROGON_HOST_AND_URL_H
+#include "prthgcpp/config.h"
+
+
+#ifdef __PRTHGLIB_INC_DROGON__
 #include <drogon/drogon.h>
 
 
@@ -140,5 +144,9 @@ namespace prthgcpp::drogon
 
 
 } // namespace prthgcpp::drogon
+
+
+#endif // __PRTHGLIB_INC_DROGON__
+
 
 #endif // PRTHGCPP_DROGON_HOST_AND_URL_H

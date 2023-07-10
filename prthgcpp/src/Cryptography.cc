@@ -35,7 +35,7 @@ prthgcpp::CCryptography::~CCryptography()
 
 
 
-std::string prthgcpp::CCryptography::GenerateSHA(std::string input, const prthgcpp::ECCryptShaLength shaLength, const bool &lowerCase) const
+std::string prthgcpp::CCryptography::GenerateSHA(std::string input, const prthgcpp::ECCryptShaLength shaLength, const int &letterCase) const
 {
     std::string result, resultTmp;
 
@@ -118,14 +118,64 @@ std::string prthgcpp::CCryptography::GenerateSHA(std::string input, const prthgc
     }
 
 
-    if (lowerCase)
+    // if (lowerCase)
+    // {
+    //     prthgcpp::CUtility util;
+    //     result = util.ForceInputToCaseOf(resultTmp, ECLetterCase::lowercase);
+    // }
+    // else
+    // {
+    //     result = resultTmp;
+    // }
+    prthgcpp::CUtility util;
+
+    switch (letterCase)
     {
-        prthgcpp::CUtility util;
-        result = util.ForceInputToCaseOf(resultTmp, ECLetterCase::lowercase);
-    }
-    else
-    {
-        result = resultTmp;
+        case 0:
+        {
+            result = util.ForceInputToCaseOf(resultTmp, ECLetterCase::uppercase);
+        }
+        break;
+
+        case 1:
+        {
+            result = util.ForceInputToCaseOf(resultTmp, ECLetterCase::lowercase);
+        }
+        break;
+
+        case 2:
+        {
+            result.reserve(resultTmp.size());
+
+            for (size_t i = 0; i < resultTmp.size(); i++)
+            {
+                // 0 is upper, 1 is lower
+                int mixedCase = util.GetRandom(0, 1);
+
+                if (mixedCase == 0 && isalpha(resultTmp[i]))
+                {
+                    std::string push{resultTmp[i]};
+                    result += util.ForceInputToCaseOf(push, ECLetterCase::uppercase);
+                }
+                else if (mixedCase == 1 && isalpha(resultTmp[i]))
+                {
+                    std::string push{resultTmp[i]};
+                    result += util.ForceInputToCaseOf(push, ECLetterCase::lowercase);
+                }
+                else
+                {
+                    std::string push{resultTmp[i]};
+                    result += push;
+                }
+            }
+        }
+        break;
+
+        default:
+        {
+            result = util.ForceInputToCaseOf(resultTmp, ECLetterCase::uppercase);
+        }
+        break;
     }
 
 
@@ -139,7 +189,7 @@ std::string prthgcpp::CCryptography::GenerateSHA(std::string input, const prthgc
 
 
 
-std::string prthgcpp::CCryptography::GenerateBLAKE2b(std::string input, const bool &lowerCase) const
+std::string prthgcpp::CCryptography::GenerateBLAKE2b(std::string input, const int &letterCase) const
 {
     std::string result, resultTmp;
 
@@ -154,14 +204,64 @@ std::string prthgcpp::CCryptography::GenerateBLAKE2b(std::string input, const bo
     encoder.Put(digest, sizeof(digest));
     encoder.MessageEnd();
 
-    if (lowerCase)
+    // if (lowerCase)
+    // {
+    //     prthgcpp::CUtility util;
+    //     result = util.ForceInputToCaseOf(resultTmp, ECLetterCase::lowercase);
+    // }
+    // else
+    // {
+    //     result = resultTmp;
+    // }
+    prthgcpp::CUtility util;
+
+    switch (letterCase)
     {
-        prthgcpp::CUtility util;
-        result = util.ForceInputToCaseOf(resultTmp, ECLetterCase::lowercase);
-    }
-    else
-    {
-        result = resultTmp;
+        case 0:
+        {
+            result = util.ForceInputToCaseOf(resultTmp, ECLetterCase::uppercase);
+        }
+        break;
+
+        case 1:
+        {
+            result = util.ForceInputToCaseOf(resultTmp, ECLetterCase::lowercase);
+        }
+        break;
+
+        case 2:
+        {
+            result.reserve(resultTmp.size());
+
+            for (size_t i = 0; i < resultTmp.size(); i++)
+            {
+                // 0 is upper, 1 is lower
+                int mixedCase = util.GetRandom(0, 1);
+
+                if (mixedCase == 0 && isalpha(resultTmp[i]))
+                {
+                    std::string push{resultTmp[i]};
+                    result += util.ForceInputToCaseOf(push, ECLetterCase::uppercase);
+                }
+                else if (mixedCase == 1 && isalpha(resultTmp[i]))
+                {
+                    std::string push{resultTmp[i]};
+                    result += util.ForceInputToCaseOf(push, ECLetterCase::lowercase);
+                }
+                else
+                {
+                    std::string push{resultTmp[i]};
+                    result += push;
+                }
+            }
+        }
+        break;
+
+        default:
+        {
+            result = util.ForceInputToCaseOf(resultTmp, ECLetterCase::uppercase);
+        }
+        break;
     }
 
 

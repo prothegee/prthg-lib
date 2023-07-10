@@ -43,15 +43,28 @@ namespace prthgcpp
         /**
          * @brief generate sha digest from input & based on length 2nd param input
          * 
+         * @note you may extend your input with some salt for secrecy
+         * @note do not use 2 as value for param letterCase for consistency data
+         * 
          * @param input 
          * @param shaLength 
-         * @param lowerCase 
+         * @param letterCase 0 is uppercase, 1 is lowercase, 2 is mixed case, otherwise 0
          * @return std::string 
          */
-        std::string GenerateSHA(std::string input, const prthgcpp::ECCryptShaLength shaLength, const bool &lowerCase) const;
+        std::string GenerateSHA(std::string input, const prthgcpp::ECCryptShaLength shaLength, const int &letterCase) const;
 
 
-        std::string GenerateBLAKE2b(std::string input, const bool &lowerCase) const;
+        /**
+         * @brief generate blake2b from input
+         * 
+         * @note you may extend your input with some salt for secrecy
+         * @note do not use 2 as value for param letterCase for consistency data
+         * 
+         * @param input 
+         * @param letterCase 0 is uppercase, 1 is lowercase, 2 is mixed case, otherwise 0
+         * @return std::string 
+         */
+        std::string GenerateBLAKE2b(std::string input, const int &letterCase) const;
 
 
         /**

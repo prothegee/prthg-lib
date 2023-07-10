@@ -42,8 +42,28 @@ void prthgcpp::drogon::CViewContent::InvokePublicView(HttpRequestPtr &pReq)
     _view.insert("is_signedIn", (pReq->session()->get<bool>("is_signedIn")) ? "true" : "false");
 
 
-    // JSESSIONID
-    _view.insert("JSESSIONID", pReq->getCookie("JSESSIONID"));
+    // jsessionid
+    _view.insert("jsessionid", pReq->getCookie("JSESSIONID"));
+
+
+    // roles
+    std::vector<int> roles = pReq->session()->get<std::vector<int>>("roles");
+    std::string rolesStr;
+    for (const auto &role : roles)
+    {
+        rolesStr += (std::to_string(role) + ",");
+    }
+    _view.insert("roles", rolesStr);
+
+
+    // rolesOrg
+    std::vector<int> rolesOrg = pReq->session()->get<std::vector<int>>("rolesOrg");
+    std::string rolesOrgStr;
+    for (const auto &roleOrg : rolesOrgStr)
+    {
+        rolesOrgStr += (std::to_string(roleOrg) + ",");
+    }
+    _view.insert("rolesOrg", rolesOrg);
 }
 
 

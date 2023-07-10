@@ -1,5 +1,9 @@
 #include "prthgcpp/inc/Utility.h"
 
+#include <cstdlib>
+#include <time.h>
+#include <random>
+
 
 prthgcpp::CUtility::CUtility()
 {
@@ -7,6 +11,23 @@ prthgcpp::CUtility::CUtility()
 
 prthgcpp::CUtility::~CUtility()
 {
+}
+
+
+
+
+
+
+
+
+bool prthgcpp::CUtility::InputIsAlphabethic(const std::string input) const
+{
+    auto itter = std::find_if(input.begin(), input.end(), [](char const& c)
+    {
+        return !isalpha(c);
+    });
+
+    return itter == input.end();
 }
 
 
@@ -119,4 +140,28 @@ std::string prthgcpp::CUtility::ForceInputToCaseOf(std::string input, const prth
 
 
     return result;
+}
+
+
+
+
+
+
+
+
+int prthgcpp::CUtility::GetRandom(const int &min, const int &max) const
+{
+    std::random_device rd;
+    std::default_random_engine re(rd());
+    std::uniform_int<int> distribute(min, max);
+
+    return distribute(re);
+}
+double prthgcpp::CUtility::GetRandom(const double &min, const double &max) const
+{
+    std::random_device rd;
+    std::default_random_engine re(rd());
+    std::uniform_real<double> distribute(min, max);
+
+    return distribute(re);
 }

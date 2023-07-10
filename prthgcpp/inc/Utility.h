@@ -11,6 +11,7 @@
 #ifndef PRTHGCPP_UTILITY_H
 #define PRTHGCPP_UTILITY_H
 #include <string>
+#include <cctype>
 #include <algorithm>
 #include <stdexcept>
 #include <json/json.h>
@@ -29,10 +30,7 @@ namespace prthgcpp
     class CUtility
     {
     private:
-        static inline const std::string m_base64Chars =
-            "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            "abcdefghijklmnopqrstuvwxyz"
-            "0123456789+/";
+        /* data */
 
 
     protected:
@@ -45,7 +43,17 @@ namespace prthgcpp
 
 
         /**
-         * @brief check if input is alphanumeric
+         * @brief check if input is only alphabetic
+         * 
+         * @param input 
+         * @return true 
+         * @return false 
+         */
+        bool InputIsAlphabethic(const std::string input) const;
+
+
+        /**
+         * @brief check if input is only alphanumeric
          * 
          * @param input 
          * @return true 
@@ -85,10 +93,13 @@ namespace prthgcpp
          * @return std::string 
          */
         std::string ForceInputToCaseOf(std::string input, const prthgcpp::ECLetterCase letterCase) const;
+
+
+        int GetRandom(const int &min, const int &max) const;
+        double GetRandom(const double &min, const double &max) const;
     };
 
 
 } // namespace prthgcpp
-
 
 #endif // PRTHGCPP_UTILITY_H

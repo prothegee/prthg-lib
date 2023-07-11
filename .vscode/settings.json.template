@@ -9,5 +9,6 @@
         // "PRTHGLIB_AS_SUBDIR": true, // true for project treatment as subdirectory
         // "PRTHGLIB_INC_DROGON": true, // will find target link library for drogon framework
         // "PRTHGLIB_INC_CRYPTOPP": true, // will find target link library for cryptopp
+        // "PRTHGLIB_INC_MAILIO": true, // will find target link library for mailio
     }
 }

@@ -52,10 +52,14 @@ namespace prthgcpp
         struct SMailioTLS
         {
             prthgcpp::TResultCommon SendTextMessage(const std::string senderName, const std::string senderEmail, const std::string recipientName, const std::string recipientEmail, const std::string mailSubject, const std::string mailContent, const std::string mailServer, const std::string mailAuthUser, const std::string mailAuthPassword) const;
+            
+            prthgcpp::TResultCommon SendHtmlMessage(const std::string senderName, const std::string senderEmail, const std::string recipientName, const std::string recipientEmail, const std::string mailSubject, const std::string htmlContent, const std::string mailServer, const std::string mailAuthUser, const std::string mailAuthPassword) const;
 
 
             #ifdef __PRTHGLIB_INC_DROGON__
             Task<prthgcpp::TResultCommon> SendTextMessageTask(const std::string senderName, const std::string senderEmail, const std::string recipientName, const std::string recipientEmail, const std::string mailSubject, const std::string mailContent, const std::string mailServer, const std::string mailAuthUser, const std::string mailAuthPassword) const;
+
+            Task<prthgcpp::TResultCommon> SendHtmlMessageTask(const std::string senderName, const std::string senderEmail, const std::string recipientName, const std::string recipientEmail, const std::string mailSubject, const std::string htmlContent, const std::string mailServer, const std::string mailAuthUser, const std::string mailAuthPassword) const;
             #endif // __PRTHGLIB_INC_DROGON__
         };
         #endif // __PRTHGLIB_INC_MAILIO__

@@ -136,6 +136,42 @@ std::string prthgcpp::CUtility::ForceInputToCaseOf(std::string input, const prth
             }
         }
         break;
+
+
+        case ECLetterCase::mixedcase:
+        {
+            result.reserve(input.size());
+
+            for (int i = 0; i < input.length(); i++)
+            {
+                //  0 is upper, 1 is lower
+                int mixedcase = GetRandom(0, 1);
+
+                if (mixedcase == 0 && isalpha(input[i]))
+                {
+                    std::string push{input[i]};
+                    result += ForceInputToCaseOf(push, ECLetterCase::uppercase);
+                }
+                else if (mixedcase == 1 && isalpha(input[i]))
+                {
+                    std::string push{input[i]};
+                    result += ForceInputToCaseOf(push, ECLetterCase::lowercase);
+                }
+                else
+                {
+                    std::string push{input[i]};
+                    result += push;
+                }
+            }
+        }
+        break;
+
+
+        default:
+        {
+            result = input;
+        }
+        break;
     }
 
 

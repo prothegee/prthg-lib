@@ -24,6 +24,7 @@ namespace prthgcpp
         undefined = 0,
         lowercase,
         uppercase,
+        mixedcase,
     };
     // enum of letter case
     enum ELetterCase : int
@@ -31,6 +32,7 @@ namespace prthgcpp
         eLetterCase_undefined = 0,
         eLetterCase_lowercase,
         eLetterCase_uppercase,
+        eLetterCase_mixedcase,
     };
 
 

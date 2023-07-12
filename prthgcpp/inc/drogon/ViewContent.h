@@ -68,7 +68,26 @@ namespace prthgcpp::drogon
          */
         void InvokeBundleJS(const std::string &bundleJs);
 
+        /**
+         * @brief invoke language to HttpViewData
+         * 
+         * @param language 
+         */
         void InvokeLanguage(const std::string &language);
+
+        /**
+         * @brief invoke message status to HttpViewData to BackendConst head tag
+         * 
+         * @param messageStatus 
+         */
+        void InvokeMessageStatus(const int &messageStatus);
+
+        /**
+         * @brief invoke message context to HttpViewData to BackendConst head tag
+         * 
+         * @param messageContext 
+         */
+        void InvokeMessageContext(const std::string  &messageContext);
     };
 
 

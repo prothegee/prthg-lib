@@ -88,6 +88,15 @@ export default class CDateAndTime extends CEndUser
 
 
 
+            case EDateAndTimeFormat.YYYY:
+            {
+                result = this.m_YYYY.toString();
+            }
+            break;
+
+
+
+
             case EDateAndTimeFormat.MM:
             {
                 result = (this.m_MM < 10) ? `0${this.m_MM.toString()}` : this.m_MM.toString();

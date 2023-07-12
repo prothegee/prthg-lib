@@ -64,6 +64,14 @@ void prthgcpp::drogon::CViewContent::InvokePublicView(HttpRequestPtr &pReq)
         rolesOrgStr += (std::to_string(roleOrg) + ",");
     }
     _view.insert("rolesOrg", rolesOrg);
+
+
+    // messageStatus :: default
+    _view.insert("messageStatus", std::to_string(0));
+
+
+    // messageContext :: default
+    _view.insert("messageContext", "");
 }
 
 
@@ -100,4 +108,20 @@ void prthgcpp::drogon::CViewContent::InvokeBundleJS(const std::string &bundleJs)
 void prthgcpp::drogon::CViewContent::InvokeLanguage(const std::string &language)
 {
     _view.insert("language", language);
+}
+
+
+
+
+void prthgcpp::drogon::CViewContent::InvokeMessageStatus(const int &messageStatus)
+{
+    _view.insert("messageStatus", std::to_string(messageStatus));
+}
+
+
+
+
+void prthgcpp::drogon::CViewContent::InvokeMessageContext(const std::string &messageContext)
+{
+    _view.insert("messageStatus", messageContext);
 }

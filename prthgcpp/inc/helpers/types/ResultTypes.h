@@ -53,6 +53,20 @@ namespace prthgcpp
     };
 
 
+    /**
+     * @brief type struct result message status
+     * 
+     * @tparam T1 either use ECBackendConstMessage or ECBakendConstMessage
+     */
+    template<typename T1>
+    struct TResultStatus
+    {
+        bool m_isOk;
+        T1 m_messageStatus;
+        std::string m_messageContext; // may/may not appear on frontend
+    };
+
+
 } // namespace prthgcpp
 
 

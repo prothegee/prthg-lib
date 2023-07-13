@@ -1,11 +1,11 @@
 #include "prthgcpp/inc/drogon/ViewContent.h"
 
 
-prthgcpp::drogon::CViewContent::CViewContent()
+prthgcpp::drogonframework::CViewContent::CViewContent()
 {
 }
 
-prthgcpp::drogon::CViewContent::~CViewContent()
+prthgcpp::drogonframework::CViewContent::~CViewContent()
 {
 }
 
@@ -16,7 +16,7 @@ prthgcpp::drogon::CViewContent::~CViewContent()
 
 
 
-void prthgcpp::drogon::CViewContent::InvokePublicView(HttpRequestPtr &pReq)
+void prthgcpp::drogonframework::CViewContent::InvokePublicView(HttpRequestPtr &pReq)
 {
     // username
     std::string username;
@@ -38,32 +38,8 @@ void prthgcpp::drogon::CViewContent::InvokePublicView(HttpRequestPtr &pReq)
     _view.insert("currentPath", pReq->getPath());
 
 
-    // is_signedIn
-    _view.insert("is_signedIn", (pReq->session()->get<bool>("is_signedIn")) ? "true" : "false");
-
-
     // jsessionid
     _view.insert("jsessionid", pReq->getCookie("JSESSIONID"));
-
-
-    // roles
-    std::vector<int> roles = pReq->session()->get<std::vector<int>>("roles");
-    std::string rolesStr;
-    for (const auto &role : roles)
-    {
-        rolesStr += (std::to_string(role) + ",");
-    }
-    _view.insert("roles", rolesStr);
-
-
-    // rolesOrg
-    std::vector<int> rolesOrg = pReq->session()->get<std::vector<int>>("rolesOrg");
-    std::string rolesOrgStr;
-    for (const auto &roleOrg : rolesOrgStr)
-    {
-        rolesOrgStr += (std::to_string(roleOrg) + ",");
-    }
-    _view.insert("rolesOrg", rolesOrg);
 
 
     // messageStatus :: default
@@ -77,7 +53,7 @@ void prthgcpp::drogon::CViewContent::InvokePublicView(HttpRequestPtr &pReq)
 
 
 
-void prthgcpp::drogon::CViewContent::InvokeBundleCSS(const std::string &bundleCss)
+void prthgcpp::drogonframework::CViewContent::InvokeBundleCSS(const std::string &bundleCss)
 {    
     std::string bundle;
     bundle += "<link rel='stylesheet' href='";
@@ -91,7 +67,7 @@ void prthgcpp::drogon::CViewContent::InvokeBundleCSS(const std::string &bundleCs
 
 
 
-void prthgcpp::drogon::CViewContent::InvokeBundleJS(const std::string &bundleJs)
+void prthgcpp::drogonframework::CViewContent::InvokeBundleJS(const std::string &bundleJs)
 {
     std::string bundle;
     bundle += "<script defer src='";
@@ -105,7 +81,7 @@ void prthgcpp::drogon::CViewContent::InvokeBundleJS(const std::string &bundleJs)
 
 
 
-void prthgcpp::drogon::CViewContent::InvokeLanguage(const std::string &language)
+void prthgcpp::drogonframework::CViewContent::InvokeLanguage(const std::string &language)
 {
     _view.insert("language", language);
 }
@@ -113,7 +89,7 @@ void prthgcpp::drogon::CViewContent::InvokeLanguage(const std::string &language)
 
 
 
-void prthgcpp::drogon::CViewContent::InvokeMessageStatus(const int &messageStatus)
+void prthgcpp::drogonframework::CViewContent::InvokeMessageStatus(const int &messageStatus)
 {
     _view.insert("messageStatus", std::to_string(messageStatus));
 }
@@ -121,7 +97,7 @@ void prthgcpp::drogon::CViewContent::InvokeMessageStatus(const int &messageStatu
 
 
 
-void prthgcpp::drogon::CViewContent::InvokeMessageContext(const std::string &messageContext)
+void prthgcpp::drogonframework::CViewContent::InvokeMessageContext(const std::string &messageContext)
 {
     _view.insert("messageStatus", messageContext);
 }

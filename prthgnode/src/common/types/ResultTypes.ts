@@ -10,8 +10,8 @@
  * - Prana Ron @prothegee (prthg@proton.me)
  * 
 */
-import { EBackendConstMessage } from "../enums/BackendEnums";
-import { EUserRole, EUserRoleOrg } from "../enums/UserEnums";
+import type { EBackendConstMessage } from "../enums/BackendEnums";
+import type { EUserRole, EUserRoleOrg } from "../enums/UserEnums";
 
 
 /**

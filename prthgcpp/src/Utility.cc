@@ -201,3 +201,20 @@ double prthgcpp::CUtility::GetRandom(const double &min, const double &max) const
 
     return distribute(re);
 }
+
+
+
+
+
+
+
+
+std::string prthgcpp::CUtility::StringFormatFromJsonValue(const Json::Value json) const
+{
+    std::string result;
+
+    Json::StreamWriterBuilder builder;
+    result = Json::writeString(builder, json);
+
+    return result;
+}

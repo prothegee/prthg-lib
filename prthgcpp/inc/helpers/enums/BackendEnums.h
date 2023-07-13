@@ -20,15 +20,23 @@ namespace prthgcpp
 
     enum class ECBackendConstMessage : int
     {
-        token_expired_for_email_verification = -1,
-        undefined = 0, // E.Q. nothing to show
-        token_verified_for_email_verification = 1,
+        reset_password_token_expired                    = -3,
+        reset_password_error                            = -2,
+        verify_email_token_expired                      = -1,
+        undefined                                       = 0, // E.Q. nothing to show
+        verify_email_token_verified                     = 1,
+        reset_password_ok                               = 2,
+        reset_password_token_verified                   = 3,
     };
-    enum ECBakendConstMessage : int
+    enum EBackendConstMessage : int
     {
-        eMessageStatus_token_expired_for_email_verification = -1,
-        eMessageStatus_undefined = 0, // E.Q. nothing to show
-        eMessageStatus_token_verified_for_email_verification = 1,
+        eMessageStatus_reset_password_token_expired     = -3,
+        eMessageStatus_reset_password_error             = -2,
+        eMessageStatus_verify_email_token_expired       = -1,
+        eMessageStatus_undefined                        = 0, // E.Q. nothing to show
+        eMessageStatus_verify_email_token_verified      = 1,
+        eMessageStatus_reset_password_ok                = 2,
+        eMessageStatus_reset_password_token_verified    = 3,
     };
 
 

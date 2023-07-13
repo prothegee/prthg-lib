@@ -97,6 +97,15 @@ namespace prthgcpp
 
         int GetRandom(const int &min, const int &max) const;
         double GetRandom(const double &min, const double &max) const;
+
+
+        /**
+         * @brief create string from json value input
+         * 
+         * @param json 
+         * @return std::string 
+         */
+        std::string StringFormatFromJsonValue(const Json::Value json) const;
     };
 
 

@@ -99,5 +99,5 @@ void prthgcpp::drogonframework::CViewContent::InvokeMessageStatus(const int &mes
 
 void prthgcpp::drogonframework::CViewContent::InvokeMessageContext(const std::string &messageContext)
 {
-    _view.insert("messageStatus", messageContext);
+    _view.insert("messageContext", messageContext);
 }

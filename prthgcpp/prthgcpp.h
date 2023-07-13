@@ -68,7 +68,7 @@ namespace prthgcpp
         struct SDrogonFramework
         {
             // host and url shared pointer
-            static inline std::shared_ptr<prthgcpp::drogon::CHostAndUrl> HostAndUrl = std::make_shared<prthgcpp::drogon::CHostAndUrl>();
+            static inline std::shared_ptr<prthgcpp::drogonframework::CHostAndUrl> HostAndUrl = std::make_shared<prthgcpp::drogonframework::CHostAndUrl>();
         };
 
         // optional pointer to prthgcpp drogon namespace

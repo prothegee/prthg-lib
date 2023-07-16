@@ -29,6 +29,8 @@
 #endif
 
 
+#include "prthgcpp/inc/DateAndTime.h"
+#include "prthgcpp/inc/MailSystem.h"
 #include "prthgcpp/inc/Utility.h"
 
 
@@ -36,6 +38,7 @@
     #include <drogon/drogon.h>
 
     #include "prthgcpp/inc/drogon/HostAndUrl.h"
+    #include "prthgcpp/inc/drogon/ViewContent.h"
 #endif
 
 
@@ -60,6 +63,12 @@ namespace prthgcpp
         static inline std::shared_ptr<prthgcpp::CCryptography> pCryptography = std::make_shared<prthgcpp::CCryptography>();
         #endif
 
+        // date and time shared pointer
+        static inline std::shared_ptr<prthgcpp::CDateAndTime> pDateAndTime = std::make_shared<prthgcpp::CDateAndTime>();
+
+        // mail system shared pointer
+        static inline std::shared_ptr<prthgcpp::CMailSystem> pMailSystem = std::make_shared<prthgcpp::CMailSystem>();
+
         // utility shared pointer
         static inline std::shared_ptr<prthgcpp::CUtility> pUtility = std::make_shared<prthgcpp::CUtility>();
 
@@ -68,7 +77,10 @@ namespace prthgcpp
         struct SDrogonFramework
         {
             // host and url shared pointer
-            static inline std::shared_ptr<prthgcpp::drogonframework::CHostAndUrl> HostAndUrl = std::make_shared<prthgcpp::drogonframework::CHostAndUrl>();
+            static inline std::shared_ptr<prthgcpp::CHostAndUrl> HostAndUrl = std::make_shared<prthgcpp::CHostAndUrl>();
+
+            // view content shared pointer
+            static inline std::shared_ptr<prthgcpp::CViewContent> ViewContent = std::make_shared<prthgcpp::CViewContent>();
         };
 
         // optional pointer to prthgcpp drogon namespace

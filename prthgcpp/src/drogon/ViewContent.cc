@@ -1,11 +1,11 @@
 #include "prthgcpp/inc/drogon/ViewContent.h"
 
 
-prthgcpp::drogonframework::CViewContent::CViewContent()
+prthgcpp::CViewContent::CViewContent()
 {
 }
 
-prthgcpp::drogonframework::CViewContent::~CViewContent()
+prthgcpp::CViewContent::~CViewContent()
 {
 }
 
@@ -16,7 +16,7 @@ prthgcpp::drogonframework::CViewContent::~CViewContent()
 
 
 
-void prthgcpp::drogonframework::CViewContent::InvokePublicView(HttpRequestPtr &pReq)
+void prthgcpp::CViewContent::InvokePublicView(HttpRequestPtr &pReq)
 {
     // username
     std::string username;
@@ -53,7 +53,7 @@ void prthgcpp::drogonframework::CViewContent::InvokePublicView(HttpRequestPtr &p
 
 
 
-void prthgcpp::drogonframework::CViewContent::InvokeBundleCSS(const std::string &bundleCss)
+void prthgcpp::CViewContent::InvokeBundleCSS(const std::string &bundleCss)
 {    
     std::string bundle;
     bundle += "<link rel='stylesheet' href='";
@@ -67,7 +67,7 @@ void prthgcpp::drogonframework::CViewContent::InvokeBundleCSS(const std::string 
 
 
 
-void prthgcpp::drogonframework::CViewContent::InvokeBundleJS(const std::string &bundleJs)
+void prthgcpp::CViewContent::InvokeBundleJS(const std::string &bundleJs)
 {
     std::string bundle;
     bundle += "<script defer src='";
@@ -81,7 +81,7 @@ void prthgcpp::drogonframework::CViewContent::InvokeBundleJS(const std::string &
 
 
 
-void prthgcpp::drogonframework::CViewContent::InvokeLanguage(const std::string &language)
+void prthgcpp::CViewContent::InvokeLanguage(const std::string &language)
 {
     _view.insert("language", language);
 }
@@ -89,7 +89,7 @@ void prthgcpp::drogonframework::CViewContent::InvokeLanguage(const std::string &
 
 
 
-void prthgcpp::drogonframework::CViewContent::InvokeMessageStatus(const int &messageStatus)
+void prthgcpp::CViewContent::InvokeMessageStatus(const int &messageStatus)
 {
     _view.insert("messageStatus", std::to_string(messageStatus));
 }
@@ -97,7 +97,7 @@ void prthgcpp::drogonframework::CViewContent::InvokeMessageStatus(const int &mes
 
 
 
-void prthgcpp::drogonframework::CViewContent::InvokeMessageContext(const std::string &messageContext)
+void prthgcpp::CViewContent::InvokeMessageContext(const std::string &messageContext)
 {
     _view.insert("messageStatus", messageContext);
 }

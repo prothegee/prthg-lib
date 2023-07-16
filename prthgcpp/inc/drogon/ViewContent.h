@@ -20,7 +20,7 @@
 using namespace drogon;
 
 
-namespace prthgcpp::drogonframework
+namespace prthgcpp
 {
 
 
@@ -91,7 +91,7 @@ namespace prthgcpp::drogonframework
     };
 
 
-} // namespace prthgcpp::drogonframework
+} // namespace prthgcpp
 
 
 #endif // __PRTHGLIB_INC_DROGON__

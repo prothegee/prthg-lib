@@ -1,11 +1,11 @@
 #include "prthgcpp/inc/drogon/HostAndUrl.h"
 
 
-prthgcpp::drogonframework::CHostAndUrl::CHostAndUrl()
+prthgcpp::CHostAndUrl::CHostAndUrl()
 {
 }
 
-prthgcpp::drogonframework::CHostAndUrl::~CHostAndUrl()
+prthgcpp::CHostAndUrl::~CHostAndUrl()
 {
 }
 
@@ -16,7 +16,7 @@ prthgcpp::drogonframework::CHostAndUrl::~CHostAndUrl()
 
 
 
-bool prthgcpp::drogonframework::CHostAndUrl::CheckOriginToAllowAccess(HttpRequestPtr pReq, Json::Value whitelistDomain)
+bool prthgcpp::CHostAndUrl::CheckOriginToAllowAccess(HttpRequestPtr pReq, Json::Value whitelistDomain)
 {
     bool result{};
 
@@ -33,7 +33,7 @@ bool prthgcpp::drogonframework::CHostAndUrl::CheckOriginToAllowAccess(HttpReques
 }
 
 
-Task<bool> prthgcpp::drogonframework::CHostAndUrl::CheckOriginToAllowAccessTask(HttpRequestPtr pReq, Json::Value whitelistDomain)
+Task<bool> prthgcpp::CHostAndUrl::CheckOriginToAllowAccessTask(HttpRequestPtr pReq, Json::Value whitelistDomain)
 {
     bool result{};
 
@@ -56,7 +56,7 @@ Task<bool> prthgcpp::drogonframework::CHostAndUrl::CheckOriginToAllowAccessTask(
 
 
 
-void prthgcpp::drogonframework::CHostAndUrl::EvaluateHostIsAllowed(HttpRequestPtr pReq, const std::string allowedHost, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback)
+void prthgcpp::CHostAndUrl::EvaluateHostIsAllowed(HttpRequestPtr pReq, const std::string allowedHost, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback)
 {
     bool allowed{};
 
@@ -75,7 +75,7 @@ void prthgcpp::drogonframework::CHostAndUrl::EvaluateHostIsAllowed(HttpRequestPt
     }
 }
 
-void prthgcpp::drogonframework::CHostAndUrl::EvaluateHostsIsAllowed(HttpRequestPtr pReq, const std::vector<std::string> allowedHosts, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback)
+void prthgcpp::CHostAndUrl::EvaluateHostsIsAllowed(HttpRequestPtr pReq, const std::vector<std::string> allowedHosts, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback)
 {
     bool allowed{false};
 
@@ -104,7 +104,7 @@ void prthgcpp::drogonframework::CHostAndUrl::EvaluateHostsIsAllowed(HttpRequestP
 
 
 
-Task<void> prthgcpp::drogonframework::CHostAndUrl::EvaluateHostIsAllowedTask(HttpRequestPtr pReq, const std::string allowedHost, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback)
+Task<void> prthgcpp::CHostAndUrl::EvaluateHostIsAllowedTask(HttpRequestPtr pReq, const std::string allowedHost, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback)
 {
     bool allowed{};
 
@@ -125,7 +125,7 @@ Task<void> prthgcpp::drogonframework::CHostAndUrl::EvaluateHostIsAllowedTask(Htt
     co_return; // seems not right?
 }
 
-Task<void> prthgcpp::drogonframework::CHostAndUrl::EvaluateHostsIsAllowedTask(HttpRequestPtr pReq, const const std::vector<std::string> allowedHosts, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback)
+Task<void> prthgcpp::CHostAndUrl::EvaluateHostsIsAllowedTask(HttpRequestPtr pReq, const const std::vector<std::string> allowedHosts, HttpResponsePtr pResp, std::function<void(const HttpResponsePtr &)> callback)
 {
     bool allowed{false};
 
@@ -156,7 +156,7 @@ Task<void> prthgcpp::drogonframework::CHostAndUrl::EvaluateHostsIsAllowedTask(Ht
 
 
 
-bool prthgcpp::drogonframework::CHostAndUrl::EvaluateOriginIsAllowed(HttpRequestPtr pReq, Json::Value whitelist) const
+bool prthgcpp::CHostAndUrl::EvaluateOriginIsAllowed(HttpRequestPtr pReq, Json::Value whitelist) const
 {
     bool result{};
 
@@ -177,7 +177,7 @@ bool prthgcpp::drogonframework::CHostAndUrl::EvaluateOriginIsAllowed(HttpRequest
 
 
 
-Task<bool> prthgcpp::drogonframework::CHostAndUrl::EvaluateOriginIsAllowedTask(HttpRequestPtr pReq, Json::Value whitelist) const
+Task<bool> prthgcpp::CHostAndUrl::EvaluateOriginIsAllowedTask(HttpRequestPtr pReq, Json::Value whitelist) const
 {
     bool result{};
 

@@ -20,7 +20,7 @@
 using namespace drogon;
 
 
-namespace prthgcpp::drogonframework
+namespace prthgcpp
 {
     #if _WIN32
         #pragma warning (disable: 4114) // same type qualifier used more than once
@@ -30,7 +30,7 @@ namespace prthgcpp::drogonframework
 
 
     /**
-     * @brief host and url backend integration
+     * @brief prthgcpp drogon host and url backend integration
      * 
      */
     class CHostAndUrl
@@ -143,7 +143,7 @@ namespace prthgcpp::drogonframework
     };
 
 
-} // namespace prthgcpp::drogonframework
+} // namespace prthgcpp
 
 
 #endif // __PRTHGLIB_INC_DROGON__

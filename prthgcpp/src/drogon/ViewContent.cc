@@ -99,5 +99,5 @@ void prthgcpp::CViewContent::InvokeMessageStatus(const int &messageStatus)
 
 void prthgcpp::CViewContent::InvokeMessageContext(const std::string &messageContext)
 {
-    _view.insert("messageStatus", messageContext);
+    _view.insert("messageContext", messageContext);
 }

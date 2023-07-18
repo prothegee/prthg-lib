@@ -10,11 +10,16 @@
  */
 #ifndef PRTHGCPP_UTILITY_H
 #define PRTHGCPP_UTILITY_H
+#include "prthgcpp/config.h"
+
 #include <string>
 #include <cctype>
 #include <algorithm>
 #include <stdexcept>
-#include <json/json.h>
+
+#ifdef __PRTHGLIB_INC_JSONCPP__
+    #include <json/json.h>
+#endif // __PRTHGLIB_INC_JSONCPP__
 
 #include "prthgcpp/inc/helpers/enums/LetterEnums.h"
 
@@ -63,17 +68,6 @@ namespace prthgcpp
 
 
         /**
-         * @brief create json format from string input
-         * 
-         * @todo multiple json parser e.g. jsoncpp & nlohman-json?
-         * 
-         * @param input 
-         * @return Json::Value 
-         */
-        Json::Value JsonFormatFromString(const std::string input) const;
-
-
-        /**
          * @brief generate alphanumeric based on length param
          * 
          * @note length less than 4 will be set to 4
@@ -99,6 +93,15 @@ namespace prthgcpp
         double GetRandom(const double &min, const double &max) const;
 
 
+        #ifdef __PRTHGLIB_INC_JSONCPP__
+        /**
+         * @brief create json format from string input
+         * 
+         * @param input 
+         * @return Json::Value 
+         */
+        Json::Value JsonFormatFromString(const std::string input) const;
+
         /**
          * @brief create string from json value input
          * 
@@ -106,6 +109,7 @@ namespace prthgcpp
          * @return std::string 
          */
         std::string StringFormatFromJsonValue(const Json::Value json) const;
+        #endif // __PRTHGLIB_INC_JSONCPP__
     };
 
 

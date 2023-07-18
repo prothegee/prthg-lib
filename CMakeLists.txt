@@ -75,6 +75,7 @@ if (PRTHGLIB_AS_SUBDIR)
 
     find_package(jsoncpp CONFIG REQUIRED)
     target_link_libraries(${PROJECT_NAME} PRIVATE JsonCpp::JsonCpp)
+    set(PRTHGLIB_INC_JSONCPP true)
 
     if (PRTHGLIB_INC_DROGON)
         target_link_libraries(${PROJECT_NAME} PRIVATE Drogon::Drogon)
@@ -92,6 +93,7 @@ else()
 
     find_package(jsoncpp CONFIG REQUIRED)
     target_link_libraries(${PROJECT_NAME} PRIVATE JsonCpp::JsonCpp)
+    set(PRTHGLIB_INC_JSONCPP true)
 
     if (PRTHGLIB_INC_DROGON)
         find_package(Drogon CONFIG REQUIRED)
@@ -118,8 +120,10 @@ add_definitions(-D__PRTHGLIB_MAJOR__=${PRTHGLIB_MAJOR})
 add_definitions(-D__PRTHGLIB_MINOR__=${PRTHGLIB_MINOR})
 add_definitions(-D__PRTHGLIB_PATCH__=${PRTHGLIB_PATCH})
 add_definitions(-D__PRTHGLIB_DATES__=${PRTHGLIB_DATES})
+add_definitions(-D__PRTHGLIB_VERSION__=${PRTHGLIB_VERSION})
 
 add_definitions(-D__PRTHGLIB_AS_SUBDIR__=${PRTHGLIB_AS_SUBDIR})
+add_definitions(-D__PRTHGLIB_INC_JSONCPP__=${PRTHGLIB_INC_JSONCPP})
 add_definitions(-D__PRTHGLIB_INC_DROGON__=${PRTHGLIB_INC_DROGON})
 add_definitions(-D__PRTHGLIB_INC_CRYPTOPP__=${PRTHGLIB_INC_CRYPTOPP})
 add_definitions(-D__PRTHGLIB_INC_MAILIO__=${PRTHGLIB_INC_MAILIO})

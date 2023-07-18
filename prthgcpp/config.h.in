@@ -28,9 +28,16 @@
 // prthglib dates version
 #define __PRTHGLIB_DATES__ @PRTHGLIB_DATES@
 
+#undef __PRTHGLIB_VERSION__ // suppress redefinition
+// prthglib full version string
+#define __PRTHGLIB_VERSION__ "@PRTHGLIB_VERSION@"
+
 
 // determine that prthglib treated as subdir or not
 #define __PRTHGLIB_AS_SUBDIR__ @PRTHGLIB_AS_SUBDIR@
+
+// determine that prthglib using jsoncpp
+#define __PRTHGLIB_INC_JSONCPP__ @PRTHGLIB_INC_JSONCPP@
 
 // determine that prthglib is using drogon library or not
 // URL: https://github.com/drogonframework/drogon

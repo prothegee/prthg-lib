@@ -54,29 +54,6 @@ bool prthgcpp::CUtility::InputIsAlphanumeric(const std::string input) const
 
 
 
-Json::Value prthgcpp::CUtility::JsonFormatFromString(const std::string input) const
-{
-    Json::Value result;
-
-
-    JSONCPP_STRING err;
-    Json::CharReaderBuilder builder;
-    const int inputLength = static_cast<int>(input.length());
-
-    const std::unique_ptr<Json::CharReader> reader(builder.newCharReader());
-    reader->parse(input.c_str(), input.c_str() + inputLength, &result, &err);
-
-
-    return result;
-}
-
-
-
-
-
-
-
-
 std::string prthgcpp::CUtility::GenerateAlphanumeric(int length) const
 {
     std::string result;
@@ -204,6 +181,27 @@ double prthgcpp::CUtility::GetRandom(const double &min, const double &max) const
 
 
 
+#ifdef __PRTHGLIB_INC_JSONCPP__
+Json::Value prthgcpp::CUtility::JsonFormatFromString(const std::string input) const
+{
+    Json::Value result;
+
+
+    JSONCPP_STRING err;
+    Json::CharReaderBuilder builder;
+    const int inputLength = static_cast<int>(input.length());
+
+    const std::unique_ptr<Json::CharReader> reader(builder.newCharReader());
+    reader->parse(input.c_str(), input.c_str() + inputLength, &result, &err);
+
+
+    return result;
+}
+
+
+
+
+
 std::string prthgcpp::CUtility::StringFormatFromJsonValue(const Json::Value json) const
 {
     std::string result;
@@ -213,3 +211,4 @@ std::string prthgcpp::CUtility::StringFormatFromJsonValue(const Json::Value json
 
     return result;
 }
+#endif // __PRTHGLIB_INC_JSONCPP__

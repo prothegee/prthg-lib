@@ -1,0 +1,55 @@
+/**
+ * @file config.h
+ * @author Prana Ron (prothegee@protonmail.com)
+ * 
+ * @brief auto generated prthgcpp config header file 
+ * 
+ * @note origin config.h.in
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ * @contributors:
+ * - Prana Ron @prothegee (prothegee@protonmail.com)
+ * 
+ */
+#ifndef PRTHCPP_CONFIG_H_IN
+#define PRTHCPP_CONFIG_H_IN
+
+
+// prthglib major version
+#define __PRTHGCPP_MAJOR__ @PRTHGCPP_MAJOR@
+
+// prthglib minor version
+#define __PRTHGCPP_MINOR__ @PRTHGCPP_MINOR@
+
+// prthglib patch version
+#define __PRTHGCPP_PATCH__ @PRTHGCPP_PATCH@
+
+// prthglib dates version
+#define __PRTHGCPP_DATES__ @PRTHGCPP_DATES@
+
+#undef __PRTHGCPP_VERSION__ // suppress redefinition
+// prthglib full version string
+#define __PRTHGCPP_VERSION__ "@PRTHGCPP_VERSION@"
+
+
+// determine that prthglib treated as subdir or not
+#define __PRTHGCPP_AS_SUBDIR__ @PRTHGCPP_AS_SUBDIR@
+
+// determine that prthglib using jsoncpp
+#define __PRTHGCPP_INC_JSONCPP__ @PRTHGCPP_INC_JSONCPP@
+
+// determine that prthglib is using drogon library or not
+// URL: https://github.com/drogonframework/drogon
+#define __PRTHGCPP_INC_DROGON__ @PRTHGCPP_INC_DROGON@
+
+// determine that prthglib is using cryptopp library or not
+// URL: https://github.com/weidai11/cryptopp
+#define __PRTHGCPP_INC_CRYPTOPP__ @PRTHGCPP_INC_CRYPTOPP@
+
+// determine that prthglib is using mailio library or not
+// URL: https://github.com/karastojko/mailio
+#define __PRTHGCPP_INC_MAILIO__ @PRTHGCPP_INC_MAILIO@
+
+
+#endif // PRTHCPP_CONFIG_H_IN

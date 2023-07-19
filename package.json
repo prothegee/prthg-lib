@@ -10,7 +10,7 @@
         "url": "git+https://github.com/prothegee/prthg-lib.git"
     },
     "keywords": [],
-    "author": "Prana Ron @prothegee (prthg@proton.me)",
+    "author": "Prana Ron @prothegee (prothegee@protonmail.com)",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/prothegee/prthg-lib/issues"
@@ -32,6 +32,6 @@
         ]
     },
     "contributors": [
-        "Prana Ron @prothegee (prthg@proton.me)"
+        "Prana Ron @prothegee (prothegee@protonmail.com)"
     ]
 }

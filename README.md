@@ -2,7 +2,7 @@
 
 __*prthg-lib project source code*__
 
-__*currently only used on internal projects as extended tools*__
+__*currently only used on internal projects as extended libraries*__
 
 <br>
 
@@ -14,18 +14,20 @@ __*currently only used on internal projects as extended tools*__
 
     - about:
         ```
-        tbd
+        N\A
         ```
     
     - dependencies:
         - required:
-            - [jsoncpp](https://github.com/open-source-parsers/jsoncpp)
+            - N\A
 
         - optional:
+            - [jsoncpp](https://github.com/open-source-parsers/jsoncpp):
+                - main json parsing
             - [drogonframework](https://github.com/drogonframework/drogon):
-                - for drogon framework backend integration
+                - drogon framework backend integration
             - [cryptopp](https://github.com/weidai11/cryptopp):
-                - for hash & stream cipher integration
+                - hash & stream cipher integration
 
     - note:
         - using *c++20* by default, otheriwse *c++17*
@@ -37,19 +39,24 @@ __*currently only used on internal projects as extended tools*__
 
     - about:
         ```
-        tbd
+        N\A
         ```
     
     - dependencies:
         - required:
-            - tbd
+            - [typescript](https://github.com/microsoft/typescript):
+                - superset javascript
+            - [tslib](https://github.com/microsoft/tslib):
+                - runtime library for typescript
+            - [rollup](https://rollupjs.org):
+                - build tool
 
         - optional:
-            - tbd
+            - N\A
 
     - note:
         ```
-        tba
+        N\A
         ```
 
 <br>

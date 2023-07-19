@@ -6,7 +6,7 @@
         // "CMAKE_CXX_FLAGS": "-std=c++20 -fcoroutines", // linux
         // "CMAKE_CXX_FLAGS": "/std:c++20 /EHsc", // windows
         // "VPCKG_ENV_DIR": "D:/vcpkg", // or C:/vcpkg or D:/vcpkg or ~/vcpkg  // this is equivalent to -DVPCKG_ENV_DIR="~/vcpkg"
-        // "PRTHGCPP_AS_SUBDIR": false, // true for project treatment as subdirectory
+        // "PRTHGCPP_AS_SUBDIR": true, // true for project treatment as subdirectory
         // "PRTHGCPP_INC_JSONCPP": true, // will find target link library for jsoncpp
         // "PRTHGCPP_INC_DROGON": true, // will find target link library for drogon framework
         // "PRTHGCPP_INC_CRYPTOPP": true, // will find target link library for cryptopp

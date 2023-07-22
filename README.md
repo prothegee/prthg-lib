@@ -28,6 +28,8 @@ __*currently only used on internal projects as extended libraries*__
                 - drogon framework backend integration
             - [cryptopp](https://github.com/weidai11/cryptopp):
                 - hash & stream cipher integration
+            - [mailio](https://github.com/karastojko/mailio):
+                - mail system with mailio
 
     - note:
         - using *c++20* by default, otheriwse *c++17*

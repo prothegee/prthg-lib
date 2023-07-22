@@ -5,12 +5,13 @@
     {
         // "CMAKE_CXX_FLAGS": "-std=c++20 -fcoroutines", // linux
         // "CMAKE_CXX_FLAGS": "/std:c++20 /EHsc", // windows
-        // "VPCKG_ENV_DIR": "D:/vcpkg", // or C:/vcpkg or D:/vcpkg or ~/vcpkg  // this is equivalent to -DVPCKG_ENV_DIR="~/vcpkg"
-        // "PRTHGCPP_AS_SUBDIR": true, // true for project treatment as subdirectory
-        // "PRTHGCPP_INC_JSONCPP": true, // will find target link library for jsoncpp
-        // "PRTHGCPP_INC_DROGON": true, // will find target link library for drogon framework
-        // "PRTHGCPP_INC_CRYPTOPP": true, // will find target link library for cryptopp
-        // "PRTHGCPP_INC_MAILIO": true, // will find target link library for mailio
-        // "PRTHGCPP_NET_EXPORT": true, // export dotnet dll
+        // "INC_VPCKG": true,
+        // "INC_VPCKG_DIR": "D:/vcpkg", // or C:/vcpkg or D:/vcpkg or ~/vcpkg  // this is equivalent to -DINC_VPCKG_DIR="~/vcpkg"
+        // "INC_PRTHGCPP_AS_SUBDIR": false, // treat prthgcpp as subdir when true
+        // "INC_PRTHGCPP_JSONCPP": true, // will find target link library for jsoncpp
+        // "INC_PRTHGCPP_DROGON": true, // will find target link library for drogon framework
+        // "INC_PRTHGCPP_CRYPTOPP": true, // will find target link library for cryptopp
+        // "INC_PRTHGCPP_MAILIO": true, // will find target link library for mailio
+        // "_": "DON'T USE ME" // yes, don't use me
     }
 }

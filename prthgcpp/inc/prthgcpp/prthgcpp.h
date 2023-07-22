@@ -24,7 +24,7 @@
 #include "prthgcpp/config.gen.h"
 
 
-#ifdef __PRTHGCPP_INC_CRYPTOPP__
+#ifdef __INC_PRTHGCPP_CRYPTOPP__
     #include "prthgcpp/classes/Cryptography.h"
 #endif
 
@@ -34,7 +34,7 @@
 #include "prthgcpp/classes/Utility.h"
 
 
-#ifdef __PRTHGCPP_INC_DROGON__
+#ifdef __INC_PRTHGCPP_DROGON__
     #include <drogon/drogon.h>
 
     #include "prthgcpp/classes/HostAndUrl.h"
@@ -58,7 +58,7 @@ namespace prthgcpp
         ~SGlobal();
 
 
-        #ifdef __PRTHGCPP_INC_CRYPTOPP__
+        #ifdef __INC_PRTHGCPP_CRYPTOPP__
         // cryptography shared pointer
         static inline std::shared_ptr<prthgcpp::CCryptography> pCryptography = std::make_shared<prthgcpp::CCryptography>();
         #endif
@@ -73,7 +73,7 @@ namespace prthgcpp
         static inline std::shared_ptr<prthgcpp::CUtility> pUtility = std::make_shared<prthgcpp::CUtility>();
 
 
-        #ifdef __PRTHGCPP_INC_DROGON__
+        #ifdef __INC_PRTHGCPP_DROGON__
         struct SDrogonFramework
         {
             // host and url shared pointer

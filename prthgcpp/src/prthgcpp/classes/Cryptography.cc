@@ -1,6 +1,7 @@
 #include "prthgcpp/classes/Cryptography.h"
 
 
+#ifdef __INC_PRTHGCPP_CRYPTOPP__
 prthgcpp::CCryptography::CCryptography()
 {
 }
@@ -388,3 +389,4 @@ std::string prthgcpp::CCryptography::StreamCipher(const prthgcpp::ECCryptCipherM
 
     return result;
 }
+#endif // __INC_PRTHGCPP_CRYPTOPP__

@@ -5,8 +5,8 @@ project(prthgcpp)
 # ########################################################################
 set(PRTHGCPP_MAJOR 0)
 set(PRTHGCPP_MINOR 0)
-set(PRTHGCPP_PATCH 0)
-set(PRTHGCPP_DATES 20230709)
+set(PRTHGCPP_PATCH 1)
+set(PRTHGCPP_DATES 20230722)
 
 set(PRTHGCPP_VERSION "${PRTHGCPP_MAJOR}.${PRTHGCPP_MINOR}.${PRTHGCPP_PATCH}.${PRTHGCPP_DATES}")
 
@@ -15,12 +15,12 @@ message(STATUS "(MSG) - ${PROJECT_NAME}: configuring v${PRTHGCPP_VERSION}")
 
 
 # ########################################################################
-if (VPCKG_ENV_DIR STREQUAL "")
-    message(STATUS "(MSG) - ${PROJECT_NAME}: VPCKG_ENV_DIR is not supplied")
+if(INC_VPCKG)
+    include("${INC_VPCKG_DIR}/scripts/buildsystems/vcpkg.cmake")
+    message(STATUS "(MSG) - ${PROJECT_NAME}: INC_VPCKG_DIR is supplied as ${INC_VPCKG_DIR}")
 else()
-    include("${VPCKG_ENV_DIR}/scripts/buildsystems/vcpkg.cmake")
-    message(STATUS "(MSG) - ${PROJECT_NAME}: VPCKG_ENV_DIR is supplied as ${VPCKG_ENV_DIR}")
-endif()
+    message(STATUS "(MSG) - ${PROJECT_NAME}: INC_VPCKG_DIR is not supplied, will assume library already include from workstation environment")
+endif(INC_VPCKG)
 # ########################################################################
 
 
@@ -73,53 +73,74 @@ add_library(${PROJECT_NAME}
 
 
 # ########################################################################
-if (PRTHGCPP_AS_SUBDIR)
+if (INC_PRTHGCPP_AS_SUBDIR)
     message(STATUS "(MSG) - ${PROJECT_NAME}: treated as subdirectory")
 
     #[===[
     NOTE:
-    when PRTHGCPP_AS_SUBDIR true,
+    when INC_PRTHGCPP_AS_SUBDIR true,
     you need to set find_package(foo CONFIG REQUIRED) at your root project 
     ]===]
 
-    if (PRTHGCPP_INC_JSONCPP)
+    if (INC_PRTHGCPP_JSONCPP)
         target_link_libraries(${PROJECT_NAME} PRIVATE JsonCpp::JsonCpp)
     endif()
 
-    if (PRTHGCPP_INC_DROGON)
+    if (INC_PRTHGCPP_DROGON)
         target_link_libraries(${PROJECT_NAME} PRIVATE Drogon::Drogon)
     endif()
 
-    if (PRTHGCPP_INC_CRYPTOPP)
+    if (INC_PRTHGCPP_CRYPTOPP)
         target_link_libraries(${PROJECT_NAME}  PRIVATE cryptopp::cryptopp)
     endif()
 
-    if (PRTHGCPP_INC_MAILIO)
+    if (INC_PRTHGCPP_MAILIO)
         target_link_libraries(${PROJECT_NAME} PRIVATE mailio)
     endif()
 else()
     message(STATUS "(MSG) - ${PROJECT_NAME}: treated as project")
 
-    if (PRTHGCPP_INC_JSONCPP)
+    if (INC_PRTHGCPP_JSONCPP)
         find_package(jsoncpp CONFIG REQUIRED)
         target_link_libraries(${PROJECT_NAME} PRIVATE JsonCpp::JsonCpp)
     endif()
 
-    if (PRTHGCPP_INC_DROGON)
+    if (INC_PRTHGCPP_DROGON)
         find_package(Drogon CONFIG REQUIRED)
         target_link_libraries(${PROJECT_NAME} PRIVATE Drogon::Drogon)
     endif()
 
-    if (PRTHGCPP_INC_CRYPTOPP)
+    if (INC_PRTHGCPP_CRYPTOPP)
         find_package(cryptopp CONFIG REQUIRED)
         target_link_libraries(${PROJECT_NAME}  PRIVATE cryptopp::cryptopp)
     endif()
 
-    if (PRTHGCPP_INC_MAILIO)
+    if (INC_PRTHGCPP_MAILIO)
         find_package(mailio CONFIG REQUIRED)
         target_link_libraries(${PROJECT_NAME} PRIVATE mailio)
     endif()
-endif(PRTHGCPP_AS_SUBDIR)
+endif(INC_PRTHGCPP_AS_SUBDIR)
+
+if(INC_PRTHGCPP_ALLDEPS)
+    message(STATUS "(MSG) - ${PROJECT_NAME}: forcing prthgcpp deps to find all packages")
+
+    find_package(jsoncpp CONFIG REQUIRED)
+    target_link_libraries(${PROJECT_NAME} PRIVATE JsonCpp::JsonCpp)
+    set(INC_PRTHGCPP_MAILIO TRUE)
+
+    find_package(Drogon CONFIG REQUIRED)
+    target_link_libraries(${PROJECT_NAME} PRIVATE Drogon::Drogon)
+    set(INC_PRTHGCPP_DROGON TRUE)
+
+    find_package(cryptopp CONFIG REQUIRED)
+    target_link_libraries(${PROJECT_NAME}  PRIVATE cryptopp::cryptopp)
+    set(INC_PRTHGCPP_CRYPTOPP TRUE)
+
+    find_package(mailio CONFIG REQUIRED)
+    target_link_libraries(${PROJECT_NAME} PRIVATE mailio)
+    set(INC_PRTHGCPP_MAILIO TRUE)
+endif(INC_PRTHGCPP_ALLDEPS)
+
 # ########################################################################
 
 
@@ -130,11 +151,11 @@ add_definitions(-D__PRTHGCPP_PATCH__=${PRTHGCPP_PATCH})
 add_definitions(-D__PRTHGCPP_DATES__=${PRTHGCPP_DATES})
 add_definitions(-D__PRTHGCPP_VERSION__=${PRTHGCPP_VERSION})
 
-add_definitions(-D__PRTHGCPP_AS_SUBDIR__=${PRTHGCPP_AS_SUBDIR})
-add_definitions(-D__PRTHGCPP_INC_JSONCPP__=${PRTHGCPP_INC_JSONCPP})
-add_definitions(-D__PRTHGCPP_INC_DROGON__=${PRTHGCPP_INC_DROGON})
-add_definitions(-D__PRTHGCPP_INC_CRYPTOPP__=${PRTHGCPP_INC_CRYPTOPP})
-add_definitions(-D__PRTHGCPP_INC_MAILIO__=${PRTHGCPP_INC_MAILIO})
+add_definitions(-D__INC_PRTHGCPP__=${INC_PRTHGCPP_AS_SUBDIR})
+add_definitions(-D__INC_PRTHGCPP_JSONCPP__=${INC_PRTHGCPP_JSONCPP})
+add_definitions(-D__INC_PRTHGCPP_DROGON__=${INC_PRTHGCPP_DROGON})
+add_definitions(-D__INC_PRTHGCPP_CRYPTOPP__=${INC_PRTHGCPP_CRYPTOPP})
+add_definitions(-D__INC_PRTHGCPP_MAILIO__=${INC_PRTHGCPP_MAILIO})
 # ########################################################################
 
 

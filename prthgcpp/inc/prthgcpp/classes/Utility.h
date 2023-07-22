@@ -17,9 +17,9 @@
 #include <algorithm>
 #include <stdexcept>
 
-#ifdef __PRTHGCPP_INC_JSONCPP__
+#ifdef __INC_PRTHGCPP_JSONCPP__
     #include <json/json.h>
-#endif // __PRTHGCPP_INC_JSONCPP__
+#endif // __INC_PRTHGCPP_JSONCPP__
 
 #include "prthgcpp/enums/LetterEnums.h"
 
@@ -93,7 +93,7 @@ namespace prthgcpp
         double GetRandom(const double &min, const double &max) const;
 
 
-        #ifdef __PRTHGCPP_INC_JSONCPP__
+        #ifdef __INC_PRTHGCPP_JSONCPP__
         /**
          * @brief create json format from string input
          * 
@@ -109,7 +109,7 @@ namespace prthgcpp
          * @return std::string 
          */
         std::string StringFormatFromJsonValue(const Json::Value json) const;
-        #endif // __PRTHGCPP_INC_JSONCPP__
+        #endif // __INC_PRTHGCPP_JSONCPP__
     };
 
 

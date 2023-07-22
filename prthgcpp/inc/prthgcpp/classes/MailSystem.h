@@ -14,18 +14,18 @@
 #include "prthgcpp/types/ResultTypes.h"
 
 
-#ifdef __PRTHGCPP_INC_DROGON__
+#ifdef __INC_PRTHGCPP_DROGON__
     #include <drogon/drogon.h>
 
     using namespace drogon;
-#endif // __PRTHGCPP_INC_DROGON__
+#endif // __INC_PRTHGCPP_DROGON__
 
 
-#ifdef __PRTHGCPP_INC_MAILIO__
+#ifdef __INC_PRTHGCPP_MAILIO__
     #include <mailio/message.hpp>
     #include <mailio/mime.hpp>
     #include <mailio/smtp.hpp>
-#endif // __PRTHGCPP_INC_MAILIO__
+#endif // __INC_PRTHGCPP_MAILIO__
 
 
 namespace prthgcpp
@@ -47,7 +47,7 @@ namespace prthgcpp
         ~CMailSystem();
 
 
-        #ifdef __PRTHGCPP_INC_MAILIO__
+        #ifdef __INC_PRTHGCPP_MAILIO__
         // mail system struct using mailio tls method
         struct SMailioTLS
         {
@@ -56,13 +56,13 @@ namespace prthgcpp
             prthgcpp::TResultCommon SendHtmlMessage(const std::string senderName, const std::string senderEmail, const std::string recipientName, const std::string recipientEmail, const std::string mailSubject, const std::string htmlContent, const std::string mailServer, const std::string mailAuthUser, const std::string mailAuthPassword) const;
 
 
-            #ifdef __PRTHGCPP_INC_DROGON__
+            #ifdef __INC_PRTHGCPP_DROGON__
             Task<prthgcpp::TResultCommon> SendTextMessageTask(const std::string senderName, const std::string senderEmail, const std::string recipientName, const std::string recipientEmail, const std::string mailSubject, const std::string mailContent, const std::string mailServer, const std::string mailAuthUser, const std::string mailAuthPassword) const;
 
             Task<prthgcpp::TResultCommon> SendHtmlMessageTask(const std::string senderName, const std::string senderEmail, const std::string recipientName, const std::string recipientEmail, const std::string mailSubject, const std::string htmlContent, const std::string mailServer, const std::string mailAuthUser, const std::string mailAuthPassword) const;
-            #endif // __PRTHGCPP_INC_DROGON__
+            #endif // __INC_PRTHGCPP_DROGON__
         };
-        #endif // __PRTHGCPP_INC_MAILIO__
+        #endif // __INC_PRTHGCPP_MAILIO__
     };
 
 

@@ -13,7 +13,7 @@
 #include "prthgcpp/config.gen.h"
 
 
-#ifdef __PRTHGCPP_INC_DROGON__
+#ifdef __INC_PRTHGCPP_DROGON__
 #include <drogon/drogon.h>
 
 
@@ -146,7 +146,7 @@ namespace prthgcpp
 } // namespace prthgcpp
 
 
-#endif // __PRTHGCPP_INC_DROGON__
+#endif // __INC_PRTHGCPP_DROGON__
 
 
 #endif // PRTHGCPP_DROGON_HOST_AND_URL_H

@@ -13,7 +13,7 @@
 #include "prthgcpp/config.gen.h"
 
 
-#ifdef __PRTHGCPP_INC_CRYPTOPP__
+#ifdef __INC_PRTHGCPP_CRYPTOPP__
 #include <iostream>
 #include <string>
 
@@ -135,7 +135,7 @@ namespace prthgcpp
 } // namespace prthgcpp
 
 
-#endif // __PRTHGCPP_INC_CRYPTOPP__
+#endif // __INC_PRTHGCPP_CRYPTOPP__
 
 
 #endif // PRTHGCPP_CRYPTOHRAPHY_H

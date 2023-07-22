@@ -34,22 +34,22 @@
 
 
 // determine that prthglib treated as subdir or not
-#define __PRTHGCPP_AS_SUBDIR__ @PRTHGCPP_AS_SUBDIR@
+#define __INC_PRTHGCPP__ @INC_PRTHGCPP_AS_SUBDIR@
 
 // determine that prthglib using jsoncpp
-#define __PRTHGCPP_INC_JSONCPP__ @PRTHGCPP_INC_JSONCPP@
+#define __INC_PRTHGCPP_JSONCPP__ @INC_PRTHGCPP_JSONCPP@
 
 // determine that prthglib is using drogon library or not
 // URL: https://github.com/drogonframework/drogon
-#define __PRTHGCPP_INC_DROGON__ @PRTHGCPP_INC_DROGON@
+#define __INC_PRTHGCPP_DROGON__ @INC_PRTHGCPP_DROGON@
 
 // determine that prthglib is using cryptopp library or not
 // URL: https://github.com/weidai11/cryptopp
-#define __PRTHGCPP_INC_CRYPTOPP__ @PRTHGCPP_INC_CRYPTOPP@
+#define __INC_PRTHGCPP_CRYPTOPP__ @INC_PRTHGCPP_CRYPTOPP@
 
 // determine that prthglib is using mailio library or not
 // URL: https://github.com/karastojko/mailio
-#define __PRTHGCPP_INC_MAILIO__ @PRTHGCPP_INC_MAILIO@
+#define __INC_PRTHGCPP_MAILIO__ @INC_PRTHGCPP_MAILIO@
 
 
 #endif // PRTHCPP_CONFIG_H_IN

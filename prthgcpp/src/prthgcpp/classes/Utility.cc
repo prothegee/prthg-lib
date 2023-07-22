@@ -181,7 +181,7 @@ double prthgcpp::CUtility::GetRandom(const double &min, const double &max) const
 
 
 
-#ifdef __PRTHGCPP_INC_JSONCPP__
+#ifdef __INC_PRTHGCPP_JSONCPP__
 Json::Value prthgcpp::CUtility::JsonFormatFromString(const std::string input) const
 {
     Json::Value result;
@@ -211,4 +211,4 @@ std::string prthgcpp::CUtility::StringFormatFromJsonValue(const Json::Value json
 
     return result;
 }
-#endif // __PRTHGCPP_INC_JSONCPP__
+#endif // __INC_PRTHGCPP_JSONCPP__

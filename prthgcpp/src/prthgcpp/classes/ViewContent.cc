@@ -1,6 +1,7 @@
 #include "prthgcpp/classes/ViewContent.h"
 
 
+#ifdef __INC_PRTHGCPP_DROGON__
 prthgcpp::CViewContent::CViewContent()
 {
 }
@@ -101,3 +102,4 @@ void prthgcpp::CViewContent::InvokeMessageContext(const std::string &messageCont
 {
     _view.insert("messageContext", messageContext);
 }
+#endif // __INC_PRTHGCPP_DROGON__

@@ -1,6 +1,7 @@
 #include "prthgcpp/classes/HostAndUrl.h"
 
 
+#ifdef __INC_PRTHGCPP_DROGON__
 prthgcpp::CHostAndUrl::CHostAndUrl()
 {
 }
@@ -194,3 +195,4 @@ Task<bool> prthgcpp::CHostAndUrl::EvaluateOriginIsAllowedTask(HttpRequestPtr pRe
 
     co_return result;
 }
+#endif // __INC_PRTHGCPP_DROGON__

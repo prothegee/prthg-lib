@@ -5,8 +5,8 @@ project(prthgcpp)
 # ########################################################################
 set(PRTHGCPP_MAJOR 0)
 set(PRTHGCPP_MINOR 0)
-set(PRTHGCPP_PATCH 1)
-set(PRTHGCPP_DATES 20230722)
+set(PRTHGCPP_PATCH 2)
+set(PRTHGCPP_DATES 20230723)
 
 set(PRTHGCPP_VERSION "${PRTHGCPP_MAJOR}.${PRTHGCPP_MINOR}.${PRTHGCPP_PATCH}.${PRTHGCPP_DATES}")
 
@@ -197,7 +197,9 @@ target_sources(${PROJECT_NAME}
 
 
 # ########################################################################
-add_subdirectory(test)
+if(INC_PRTHGCPP_TEST)
+    add_subdirectory(test)
+endif(INC_PRTHGCPP_TEST)
 # ########################################################################
 
 

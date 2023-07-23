@@ -77,7 +77,7 @@ std::string prthgcpp::CUtility::GenerateAlphanumeric(int length) const
 
     for (int i = 0; i < length; i++)
     {
-        int j = GetRandom(0, m_alphanum.length()-1);
+        int j = GetRandomNumber(0, m_alphanum.length()-1);
         result += m_alphanum[j];
     }
 
@@ -126,7 +126,7 @@ std::string prthgcpp::CUtility::ForceInputToCaseOf(std::string input, const prth
             for (int i = 0; i < input.length(); i++)
             {
                 //  0 is lower, 1 is upper
-                int mixedcase = GetRandom(0, 1);
+                int mixedcase = GetRandomNumber(0, 1);
 
                 if (mixedcase == 0 && isalpha(input[i]))
                 {
@@ -190,7 +190,7 @@ std::string prthgcpp::CUtility::ForceInputToCaseOf(std::string input, const int 
             for (int i = 0; i < input.length(); i++)
             {
                 //  0 is lower, 1 is upper
-                int mixedcase = GetRandom(0, 1);
+                int mixedcase = GetRandomNumber(0, 1);
 
                 if (mixedcase == 0 && isalpha(input[i]))
                 {
@@ -227,7 +227,7 @@ std::string prthgcpp::CUtility::ForceInputToCaseOf(std::string input, const int 
 
 
 
-int prthgcpp::CUtility::GetRandom(const int &min, const int &max) const
+int prthgcpp::CUtility::GetRandomNumber(const int &min, const int &max) const
 {
     std::random_device rd;
     std::default_random_engine re(rd());
@@ -235,7 +235,7 @@ int prthgcpp::CUtility::GetRandom(const int &min, const int &max) const
 
     return distribute(re);
 }
-double prthgcpp::CUtility::GetRandom(const double &min, const double &max) const
+double prthgcpp::CUtility::GetRandomNumber(const double &min, const double &max) const
 {
     std::random_device rd;
     std::default_random_engine re(rd());
@@ -282,3 +282,20 @@ std::string prthgcpp::CUtility::StringFormatFromJsonValue(const Json::Value json
     return result;
 }
 #endif // __INC_PRTHGCPP_JSONCPP__
+
+
+
+
+
+
+
+
+std::string prthgcpp::CUtility::GenerateUUID() const
+{
+    std::string result;
+    std::string str1(GenerateAlphanumeric(8)), str2(GenerateAlphanumeric(4)), str3(GenerateAlphanumeric(4)), str4(GenerateAlphanumeric(4)), str5(GenerateAlphanumeric(12));
+
+    result = str1 + "-" + str2 + "-" + str3 + "-" + str4 + "-" + str5;
+
+    return result;
+}

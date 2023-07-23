@@ -110,7 +110,7 @@ namespace prthgcpp
          * @param max 
          * @return int 
          */
-        int GetRandom(const int &min, const int &max) const;
+        int GetRandomNumber(const int &min, const int &max) const;
         /**
          * @brief generate random number
          * 
@@ -118,7 +118,7 @@ namespace prthgcpp
          * @param max 
          * @return double 
          */
-        double GetRandom(const double &min, const double &max) const;
+        double GetRandomNumber(const double &min, const double &max) const;
 
 
         #ifdef __INC_PRTHGCPP_JSONCPP__
@@ -138,6 +138,14 @@ namespace prthgcpp
          */
         std::string StringFormatFromJsonValue(const Json::Value json) const;
         #endif // __INC_PRTHGCPP_JSONCPP__
+
+
+        /**
+         * @brief generate uuid
+         * 
+         * @return std::string 
+         */
+        std::string GenerateUUID() const;
     };
 
 

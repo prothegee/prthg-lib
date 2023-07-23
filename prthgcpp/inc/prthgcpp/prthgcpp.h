@@ -86,13 +86,6 @@ namespace prthgcpp
         // optional pointer to prthgcpp drogon namespace
         static inline std::shared_ptr<SDrogonFramework> pDrogonFramework = std::make_shared<SDrogonFramework>();
         #endif
-
-
-        /**
-         * @brief just say a hello from global struct
-         * 
-         */
-        void SayHello();
     };
 
 

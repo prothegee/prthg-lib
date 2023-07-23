@@ -18,7 +18,4 @@ prthgcpp::SGlobal::~SGlobal()
 
 
 
-void prthgcpp::SGlobal::SayHello()
-{
-    std::cout << "(MSG) - hello from prthgcpp" << "\n";
-}
+// reserved

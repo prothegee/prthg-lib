@@ -35,7 +35,7 @@ namespace prthgcpp
     class CUtility
     {
     private:
-        /* data */
+        const std::string m_alphanum = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
 
     protected:
@@ -45,6 +45,14 @@ namespace prthgcpp
     public:
         CUtility(/* args */);
         ~CUtility();
+
+
+        /**
+         * @brief get alphanumeric string
+         * 
+         * @return std::string 
+         */
+        std::string GetAlphaNumeric() const;
 
 
         /**
@@ -70,9 +78,7 @@ namespace prthgcpp
         /**
          * @brief generate alphanumeric based on length param
          * 
-         * @note length less than 4 will be set to 4
-         * @note this generator quality is average
-         * @note you need add srand(time(0)) before call this function
+         * @note length less than 0 will be set to 1
          * 
          * @param length 
          * @return std::string 
@@ -83,13 +89,35 @@ namespace prthgcpp
          * @brief force input as letterCase param format
          * 
          * @param input 
-         * @param letterCase 
+         * @param letterCase prthgcpp::ECLetterCase
          * @return std::string 
          */
         std::string ForceInputToCaseOf(std::string input, const prthgcpp::ECLetterCase letterCase) const;
+        /**
+         * @brief force input as letterCase param format
+         * 
+         * @param input 
+         * @param letterCase 0 is lowercase, 1 is uppercase, 2 is mixedcase
+         * @return std::string 
+         */
+        std::string ForceInputToCaseOf(std::string input, const int &letterCase) const;
 
 
+        /**
+         * @brief generate random number
+         * 
+         * @param min 
+         * @param max 
+         * @return int 
+         */
         int GetRandom(const int &min, const int &max) const;
+        /**
+         * @brief generate random number
+         * 
+         * @param min 
+         * @param max 
+         * @return double 
+         */
         double GetRandom(const double &min, const double &max) const;
 
 

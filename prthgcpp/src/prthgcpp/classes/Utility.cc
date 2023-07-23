@@ -20,6 +20,18 @@ prthgcpp::CUtility::~CUtility()
 
 
 
+std::string prthgcpp::CUtility::GetAlphaNumeric() const
+{
+    return m_alphanum;
+}
+
+
+
+
+
+
+
+
 bool prthgcpp::CUtility::InputIsAlphabethic(const std::string input) const
 {
     auto itter = std::find_if(input.begin(), input.end(), [](char const& c)
@@ -59,20 +71,14 @@ std::string prthgcpp::CUtility::GenerateAlphanumeric(int length) const
     std::string result;
 
 
-    if (length <= 4) { length = 4; }
-
-    char alphanum[] =
-        "abcdefghijklmnopqrstuvwxyz"
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        "0123456789";
+    if (length <= 0) { length = 1; }
 
     result.reserve(length);
 
-    // srand(time(0));
-
     for (int i = 0; i < length; i++)
     {
-        result += alphanum[rand() % (sizeof(alphanum) - 1)];
+        int j = GetRandom(0, m_alphanum.length()-1);
+        result += m_alphanum[j];
     }
 
 
@@ -116,6 +122,70 @@ std::string prthgcpp::CUtility::ForceInputToCaseOf(std::string input, const prth
 
 
         case ECLetterCase::mixedcase:
+        {
+            for (int i = 0; i < input.length(); i++)
+            {
+                //  0 is lower, 1 is upper
+                int mixedcase = GetRandom(0, 1);
+
+                if (mixedcase == 0 && isalpha(input[i]))
+                {
+                    result += tolower(input[i]);
+                }
+                else if (mixedcase == 1 && isalpha(input[i]))
+                {
+                    result += toupper(input[i]);
+                }
+                else
+                {
+                    result += input[i];
+                }
+            }
+        }
+        break;
+
+
+        default:
+        {
+            result = input;
+        }
+        break;
+    }
+
+
+    return result;
+}
+
+std::string prthgcpp::CUtility::ForceInputToCaseOf(std::string input, const int &letterCase) const
+{
+    std::string result;
+
+
+    result.reserve(input.length());
+
+    switch (letterCase)
+    {
+        case 0:
+        {
+            for (int i = 0; i < input.length(); i++)
+            {
+                result += tolower(input[i]);
+            }
+        }
+        break;
+
+
+        case 1:
+        {
+            for (int i = 0; i < input.length(); i++)
+            {
+                result += toupper(input[i]);
+            }
+        }
+        break;
+
+
+        case 2:
         {
             for (int i = 0; i < input.length(); i++)
             {

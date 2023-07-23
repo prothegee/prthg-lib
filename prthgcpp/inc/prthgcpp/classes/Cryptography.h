@@ -65,70 +65,129 @@ namespace prthgcpp
 
 
         /**
-         * @brief generate sha digest from input & based on length 2nd param input
+         * @brief generate sha1 from input
          * 
-         * @note you may extend your input with some salt for secrecy
-         * @note do not use 2 as value for param letterCase for consistency data
+         * @note return length will be 40
          * 
          * @param input 
-         * @param shaLength 
-         * @param letterCase 0 is uppercase, 1 is lowercase, 2 is mixed case, otherwise 0
          * @return std::string 
          */
-        std::string GenerateSHA(std::string input, const prthgcpp::ECCryptShaLength shaLength, const int &letterCase) const;
+        std::string GenerateSHA1(const std::string &input) const;
+
+        /**
+         * @brief generate sha224 from input
+         * 
+         * @note return length will be 56
+         * 
+         * @param input 
+         * @return std::string 
+         */
+        std::string GenerateSHA224(const std::string &input) const;
+
+        /**
+         * @brief generate sha256 from input
+         * 
+         * @note return length will be 64
+         * 
+         * @param input 
+         * @return std::string 
+         */
+        std::string GenerateSHA256(const std::string &input) const;
+
+        /**
+         * @brief generate sha384 from input
+         * 
+         * @note return length will be 96
+         * 
+         * @param input 
+         * @return std::string 
+         */
+        std::string GenerateSHA384(const std::string &input) const;
+
+        /**
+         * @brief generate sha512 from input
+         * 
+         * @note return length will be 128
+         * 
+         * @param input 
+         * @return std::string 
+         */
+        std::string GenerateSHA512(const std::string &input) const;
 
 
         /**
          * @brief generate blake2b from input
          * 
-         * @note you may extend your input with some salt for secrecy
-         * @note do not use 2 as value for param letterCase for consistency data
+         * @note return length will be 128
          * 
          * @param input 
-         * @param letterCase 0 is uppercase, 1 is lowercase, 2 is mixed case, otherwise 0
          * @return std::string 
          */
-        std::string GenerateBLAKE2b(std::string input, const int &letterCase) const;
+        std::string GenerateBLAKE2b(const std::string &input) const;
 
 
         /**
-         * @brief generate password hasher
-         * 
-         * @note you may store your salt somewhere
+         * @brief generate password hasher using scrypt
          * 
          * @param input 
-         * @param passwordHasher 
          * @param salt 
          * @return std::string 
          */
-        std::string GeneratePasswordHasher(std::string input, const prthgcpp::ECCryptHasherMode passwordHasher, std::string salt) const;
+        std::string GenerateHasherSCRYPT(std::string input, std::string salt) const;
 
 
         /**
-         * @brief stream cipher mode to encrypt decrypt a message/input
+         * @brief encrypt input using XChaCha20 stream cipher
          * 
-         * @note for ECCryptStreamCipherMode::CBC_AES
-         * @note both initializeKey & initializeVector must 9 byte length and cannot start with 0
-         * @note e.g. 123456789 or 987654321
-         * @note also both initializeKeyStr & initializeVectorStr will be ignore
-         * @note --
-         * @note for ECCryptStreamCipherMode::XChaCha20
-         * @note both initializeKey & initializeVector will be ignore
-         * @note also initializeKeyStr must 32 byte length
-         * @note e.g. abcdefghijklmnopqrstuvwxyz123456
-         * @note while initializeVectorStr must 24 byte length
-         * @note e.g. abcdefghijklmnopqrstuvwx
+         * @note initializeKey length must 32 byte e.g. abcdefghijklmnopqrstuvwxyz123456
+         * @note initializeVector length must 24 byte e.g. abcdefghijklmnopqrstuvwx
          * 
-         * @param cipherMode 
-         * @param streamCipherMode 
+         * @param input 
+         * @param initializeVector 
+         * @param initializeKey 
+         * @return std::string 
+         */
+        std::string EncryptXChaCha20(std::string input, std::string initializeKey, std::string initializeVector) const;
+
+        /**
+         * @brief decrypt input using XChaCha20 stream cipher
+         * 
+         * @note initializeKey length must 32 byte e.g. abcdefghijklmnopqrstuvwxyz123456
+         * @note initializeVector length must 24 byte e.g. abcdefghijklmnopqrstuvwx
+         * 
+         * @param input 
+         * @param initializeVector 
+         * @param initializeKey 
+         * @return std::string 
+         */
+        std::string DecryptXChaCha20(std::string input, std::string initializeKey, std::string initializeVector) const;
+
+
+        /**
+         * @brief encrypt input using CBC AES stream cipher
+         * 
+         * @note initializeKey length must 9 byte and can't start from 0 e.g. 123456789
+         * @note initializeVector length must 9 byte and can't start from 0 e.g. 987654321
+         * 
          * @param input 
          * @param initializeKey 
          * @param initializeVector 
-         * @param initializeKeyStr
-         * @param initializeVectorStr 
          * @return std::string 
          */
-        std::string StreamCipher(const prthgcpp::ECCryptCipherMode cipherMode, const prthgcpp::ECCryptStreamCipherMode streamCipherMode, std::string input, int initializeKey, int initializeVector, std::string initializeKeyStr, std::string initializeVectorStr) const;
+        std::string EncryptCBCAES(std::string input, int initializeKey, int initializeVector) const;
+
+        /**
+         * @brief decrypt input using CBC AES stream cipher
+         * 
+         * @note initializeKey length must 9 byte and can't start from 0 e.g. 123456789
+         * @note initializeVector length must 9 byte and can't start from 0 e.g. 987654321
+         * 
+         * @param input 
+         * @param initializeKey 
+         * @param initializeVector 
+         * @return std::string 
+         */
+        std::string DecryptCBCAES(std::string input, int initializeKey, int initializeVector) const;
     };
 
 

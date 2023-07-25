@@ -6,6 +6,17 @@ __*currently only used on internal projects as extended libraries*__
 
 <br>
 
+### `status:`
+- build:
+    - __*Alpha*__ <!-- Debug & Release later -->
+
+<br>
+
+- tested desktop environment:
+    - __*[X] linux*__
+    - __*[X] osx*__
+    - __*[V] windows*__
+
 ---
 
 ## libraries

@@ -14,6 +14,7 @@
  */
 #ifndef PRTHCPP_CONFIG_H_IN
 #define PRTHCPP_CONFIG_H_IN
+#include "prthgcpp_export.gen.h"
 
 
 // prthglib major version

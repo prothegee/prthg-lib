@@ -6,7 +6,7 @@ project(prthgcpp)
 set(PRTHGCPP_MAJOR 0)
 set(PRTHGCPP_MINOR 0)
 set(PRTHGCPP_PATCH 1)
-set(PRTHGCPP_DATES 20230725)
+set(PRTHGCPP_DATES 20230726)
 
 set(PRTHGCPP_VERSION "${PRTHGCPP_MAJOR}.${PRTHGCPP_MINOR}.${PRTHGCPP_PATCH}.${PRTHGCPP_DATES}-ALPHA")
 
@@ -91,11 +91,9 @@ endif(BUILD_SHARED_LIBS)
 
 
 # ########################################################################
-if (PRTHGCPP_EXPORT)
-    include(GenerateExportHeader)
+include(GenerateExportHeader)
 
-    generate_export_header(${PROJECT_NAME} EXPORT_FILE_NAME ${PROJECT_SOURCE_DIR}/inc/prthgcpp/prthgcpp_export.gen.h)
-endif(PRTHGCPP_EXPORT)
+generate_export_header(${PROJECT_NAME} EXPORT_FILE_NAME ${PROJECT_SOURCE_DIR}/inc/prthgcpp/prthgcpp_export.gen.h)
 
 configure_file(
     ${PROJECT_SOURCE_DIR}/inc/prthgcpp/config.h.in

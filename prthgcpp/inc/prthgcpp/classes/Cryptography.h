@@ -72,7 +72,7 @@ namespace prthgcpp
          * @param input 
          * @return std::string 
          */
-        PRTHGCPP_EXPORT std::string GenerateSHA1(const std::string &input) const;
+        std::string GenerateSHA1(const std::string &input) const;
 
         /**
          * @brief generate sha224 from input
@@ -82,7 +82,7 @@ namespace prthgcpp
          * @param input 
          * @return std::string 
          */
-        PRTHGCPP_EXPORT std::string GenerateSHA224(const std::string &input) const;
+        std::string GenerateSHA224(const std::string &input) const;
 
         /**
          * @brief generate sha256 from input
@@ -92,7 +92,7 @@ namespace prthgcpp
          * @param input 
          * @return std::string 
          */
-        PRTHGCPP_EXPORT std::string GenerateSHA256(const std::string &input) const;
+        std::string GenerateSHA256(const std::string &input) const;
 
         /**
          * @brief generate sha384 from input
@@ -102,7 +102,7 @@ namespace prthgcpp
          * @param input 
          * @return std::string 
          */
-        PRTHGCPP_EXPORT std::string GenerateSHA384(const std::string &input) const;
+        std::string GenerateSHA384(const std::string &input) const;
 
         /**
          * @brief generate sha512 from input
@@ -112,7 +112,7 @@ namespace prthgcpp
          * @param input 
          * @return std::string 
          */
-        PRTHGCPP_EXPORT std::string GenerateSHA512(const std::string &input) const;
+        std::string GenerateSHA512(const std::string &input) const;
 
 
         /**
@@ -123,7 +123,7 @@ namespace prthgcpp
          * @param input 
          * @return std::string 
          */
-        PRTHGCPP_EXPORT std::string GenerateBLAKE2b(const std::string &input) const;
+        std::string GenerateBLAKE2b(const std::string &input) const;
 
 
         /**
@@ -133,7 +133,7 @@ namespace prthgcpp
          * @param salt 
          * @return std::string 
          */
-        PRTHGCPP_EXPORT std::string GenerateHasherSCRYPT(std::string input, std::string salt) const;
+        std::string GenerateHasherSCRYPT(std::string input, std::string salt) const;
 
 
         /**
@@ -147,7 +147,7 @@ namespace prthgcpp
          * @param initializeKey 
          * @return std::string 
          */
-        PRTHGCPP_EXPORT std::string EncryptXChaCha20(std::string input, std::string initializeKey, std::string initializeVector) const;
+        std::string EncryptXChaCha20(std::string input, std::string initializeKey, std::string initializeVector) const;
 
         /**
          * @brief decrypt input using XChaCha20 stream cipher
@@ -160,7 +160,7 @@ namespace prthgcpp
          * @param initializeKey 
          * @return std::string 
          */
-        PRTHGCPP_EXPORT std::string DecryptXChaCha20(std::string input, std::string initializeKey, std::string initializeVector) const;
+        std::string DecryptXChaCha20(std::string input, std::string initializeKey, std::string initializeVector) const;
 
 
         /**
@@ -174,7 +174,7 @@ namespace prthgcpp
          * @param initializeVector 
          * @return std::string 
          */
-        PRTHGCPP_EXPORT std::string EncryptCBCAES(std::string input, int initializeKey, int initializeVector) const;
+        std::string EncryptCBCAES(std::string input, int initializeKey, int initializeVector) const;
 
         /**
          * @brief decrypt input using CBC AES stream cipher
@@ -187,7 +187,7 @@ namespace prthgcpp
          * @param initializeVector 
          * @return std::string 
          */
-        PRTHGCPP_EXPORT std::string DecryptCBCAES(std::string input, int initializeKey, int initializeVector) const;
+        std::string DecryptCBCAES(std::string input, int initializeKey, int initializeVector) const;
     };
 
 

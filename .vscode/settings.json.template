@@ -13,6 +13,8 @@
         // "INC_PRTHGCPP_DROGON": true, // will find target link library for drogon framework
         // "INC_PRTHGCPP_CRYPTOPP": true, // will find target link library for cryptopp
         // "INC_PRTHGCPP_MAILIO": true, // will find target link library for mailio
+        // "INC_PRTHGCPP_ALLDEPS": false, // force include all dependencies/library when true
+        // "PRTHGCPP_EXPORT": true, // will export shared library
         // "_": "DON'T USE ME" // yes, don't use me
     }
 }

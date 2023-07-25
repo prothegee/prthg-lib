@@ -5,10 +5,10 @@ project(prthgcpp)
 # ########################################################################
 set(PRTHGCPP_MAJOR 0)
 set(PRTHGCPP_MINOR 0)
-set(PRTHGCPP_PATCH 2)
-set(PRTHGCPP_DATES 20230723)
+set(PRTHGCPP_PATCH 1)
+set(PRTHGCPP_DATES 20230725)
 
-set(PRTHGCPP_VERSION "${PRTHGCPP_MAJOR}.${PRTHGCPP_MINOR}.${PRTHGCPP_PATCH}.${PRTHGCPP_DATES}")
+set(PRTHGCPP_VERSION "${PRTHGCPP_MAJOR}.${PRTHGCPP_MINOR}.${PRTHGCPP_PATCH}.${PRTHGCPP_DATES}-ALPHA")
 
 message(STATUS "(MSG) - ${PROJECT_NAME}: configuring v${PRTHGCPP_VERSION}")
 # ########################################################################
@@ -49,7 +49,21 @@ endif()
 
 
 # ########################################################################
-set(PRTHGCPP_FILE_SOURCE
+set(PRTHGCPP_SOURCE_HEADER
+    inc/prthgcpp/prthgcpp.cc
+
+    # internal region
+    inc/prthgcpp/classes/Cryptography.h
+    inc/prthgcpp/classes/DateAndTime.h
+    inc/prthgcpp/classes/Utility.h
+    inc/prthgcpp/classes/MailSystem.h
+
+    # drogon framework region
+    inc/prthgcpp/classes/HostAndUrl.cc
+    inc/prthgcpp/classes/ViewContent.cc
+)
+
+set(PRTHGCPP_SOURCE_FILE
     src/prthgcpp/prthgcpp.cc
 
     # internal region
@@ -67,8 +81,28 @@ set(PRTHGCPP_FILE_SOURCE
 
 # ########################################################################
 add_library(${PROJECT_NAME}
-    ${PRTHGCPP_FILE_SOURCE}
+    ${PRTHGCPP_SOURCE_FILE}
 )
+
+if(BUILD_SHARED_LIBS)
+    # TODO
+endif(BUILD_SHARED_LIBS)
+# ########################################################################
+
+
+# ########################################################################
+if (PRTHGCPP_EXPORT)
+    include(GenerateExportHeader)
+
+    generate_export_header(${PROJECT_NAME} EXPORT_FILE_NAME ${PROJECT_SOURCE_DIR}/inc/prthgcpp/prthgcpp_export.gen.h)
+endif(PRTHGCPP_EXPORT)
+
+configure_file(
+    ${PROJECT_SOURCE_DIR}/inc/prthgcpp/config.h.in
+    ${PROJECT_SOURCE_DIR}/inc/prthgcpp/config.gen.h
+)
+
+include_directories(${PROJECT_SOURCE_DIR}/)
 # ########################################################################
 
 
@@ -160,17 +194,6 @@ add_definitions(-D__INC_PRTHGCPP_MAILIO__=${INC_PRTHGCPP_MAILIO})
 
 
 # ########################################################################
-configure_file(
-    ${PROJECT_SOURCE_DIR}/inc/prthgcpp/config.h.in
-    ${PROJECT_SOURCE_DIR}/inc/prthgcpp/config.gen.h
-)
-
-include_directories(${PROJECT_SOURCE_DIR}/
-)
-# ########################################################################
-
-
-# ########################################################################
 aux_source_directory(inc/prthgcpp/classes PRTHGCPP_CLASSES_INC)
 aux_source_directory(inc/prthgcpp/enums PRTHGCPP_ENUMS_INC)
 aux_source_directory(inc/prthgcpp/types PRTHGCPP_TYPES_INC)
@@ -200,15 +223,4 @@ target_sources(${PROJECT_NAME}
 if(INC_PRTHGCPP_TEST)
     add_subdirectory(test)
 endif(INC_PRTHGCPP_TEST)
-# ########################################################################
-
-
-# ########################################################################
-if (PRTHGCPP_NET_EXPORT)
-    # # TODO
-    # set(CMAKE_RUNTIME_OUTPUT_DIRECTORY  ${CMAKE_CURRENT_SOURCE_DIR}/prthgnet/obj)
-    # set(CMAKE_LIBRARY_OUTPUT_DIRECTORY  ${CMAKE_CURRENT_SOURCE_DIR}/prthgnet/obj)
-    # set(CMAKE_PDB_OUTPUT_DIRECTORY      ${CMAKE_CURRENT_SOURCE_DIR}/prthgnet/obj)
-    # set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY  ${CMAKE_CURRENT_SOURCE_DIR}/prthgnet/obj)
-endif()
 # ########################################################################

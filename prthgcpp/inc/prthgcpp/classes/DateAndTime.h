@@ -10,6 +10,8 @@
  */
 #ifndef PRTHGCPP_DATE_AND_TIME_H
 #define PRTHGCPP_DATE_AND_TIME_H
+#include "prthgcpp/config.gen.h"
+
 #include <time.h>
 #include <chrono>
 #include <string>
